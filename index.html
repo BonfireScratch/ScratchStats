@@ -400,69 +400,104 @@ View Profile
 </section>
 <span id="usermessagecount"></span>
 <script>
-//Raytracing
+// Get Hash
+
 var getuserinputdata = -1;
+
 if (window.location.href.indexOf("#") != -1) {
 var getuserinputdata = window.location.href.substring(window.location.href.indexOf("#") + 1);}
+
+// Setup Variables
+
 var scratchusername
 var userAPIdata;
 var usermessages;
+
+// Username Ask/find
+
 if (getuserinputdata == -1) {
 var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
-scratchusername = scratchusername.replace("@","");
-scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");
-scratchusername = scratchusername.replace("/","");
+scratchusername = scratchusername.replace("@",""); // In case of Tag
+scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
+scratchusername = scratchusername.replace("/","");                                //URL to Pure Name
 window.location.href = window.location.href + "#" + scratchusername;
 }
 else {scratchusername=getuserinputdata}
+
 updatepageuser();
 function updatepageuser() {
-document.getElementById("usernamesearch").innerHTML = scratchusername;
-document.title = scratchusername + " | Scratch Stats+";}
+// Update title + Name
+document.getElementById("displayusername").innerHTML = scratchusername;
+
+// ScratchStats+ Crowns
+if (scratchusername.toLowerCase() == "world_languages" || scratchusername.toLowerCase() == "packersrulegopack" || scratchusername.toLowerCase() == "raytracing") {document.getElementById("usernamesearch").innerHTML = scratchusername + " ♔";}
+
+document.title = scratchusername + " | Stats+";
+}
+
+// Get API
+
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        var response = xhttp.responseText;
        userAPIdata = response;
        loadpagefromAPI();
+       
     }
 };
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername, true);
 xhttp.send();
 
 function loadpagefromAPI() {
+
     var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
     var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
-    var userlogo = getElementFromAPI(userAPIdata,"\"60x60\"");
+    var userlogo = getElementFromAPI(userAPIdata,"\"90x90\"");
     var useraboutme = getElementFromAPI(userAPIdata,"\"bio\"");
     var userdescription = getElementFromAPI(userAPIdata,"\"status\"");
     var userjoindate = getElementFromAPI(userAPIdata,"\"joined\"").substring(0,10);
     scratchusername = getElementFromAPI(userAPIdata,"\"username\"");
+
+    // Modify Data
+    
     var replacechar = '\\n';
+
     useraboutme = useraboutme.split(replacechar).join(" ");
     userdescription = userdescription.split(replacechar).join(" ");
     if (useraboutme=="\",") {useraboutme = "";}
     if (userdescription=="\",") {userdescription = "";}
+
+
     var replacechar = '\\"';
+
     useraboutme = useraboutme.split(replacechar).join('"');
     userdescription = userdescription.split(replacechar).join('"');
+
     
-    document.getElementById("userbasicinfo").innerHTML = "Day Joined: ", userjoindate," - Country: ", usercountry," - ", usermessages" Messages";
+
+    // Represent Data
+    //document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
     document.getElementById("userdisplaylogo").src = userlogo;
-    document.getElementById("userdisplayaboutme").innerHTML = useraboutme;
-    document.getElementById("userdisplaydescription").innerHTML = userdescription;
+    document.getElementById("aboutme").innerHTML = useraboutme;
+    document.getElementById("wiwo").innerHTML = userdescription;
     updatepageuser();
-    getMessageCount();
+
+    getMessageCount()
 }
+
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
     var i = API.indexOf(element)+element.length+2;if (isinterger == "true") {i=i-1}
+    
     if (isinterger == "true") {
         do {
             str = str + API.charAt(i);
             i = i+1;
         } while (API.charAt(i) != "," && i < API.length && API.charAt(i) != "}")
+        
     } else {
+
     do {
         str = str + API.charAt(i);
         i = i+1;
@@ -470,18 +505,23 @@ function getElementFromAPI(API,element,isinterger) {
     
     return str;
 }
+
 function getMessageCount() {
+
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            var response = xhttp.responseText;
            usermessages = getElementFromAPI(response,"\"count\"","true");
            //document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
+       
     }
 };
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
 xhttp.send();
-}  
-function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);}
+}
+      
+function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);
+}
 </script>
 </body>
