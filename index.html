@@ -758,28 +758,18 @@ img.mfp-img {
 <br>
 <section class="bg-primary text-white mb-0" id="about">
 <div class="container">
-<h2 class="text-center text-uppercase text-white">About Me</h2>
+<h2 class="text-center text-uppercase text-white">About</h2>
+<hr class="star-light mb-5">
 <div class="row">
 <div class="col-lg-4 ml-auto">
-<div id="userdisplayaboutme">
-</div>
-</div>
-<div class="col-lg-4 mr-auto">
-</div>
-</div>
-<br>
-<br>
-<h2 class="text-center text-uppercase text-white">What I'm Working on</h2>
-<div class="row">
-<div class="col-lg-4 ml-auto">
-<div id="userdisplaydescription">
-</div>
+<p class="lead" id="userdisplayaboutme"></p>
 </div>
 <div class="col-lg-4 mr-auto">
+<p class="lead" id="userdisplaydescription"></p>
 </div>
 </div>
 <div class="text-center mt-4">
-<a class="btn btn-xl btn-outline-light" href="#">
+<a class="btn btn-xl btn-outline-light" id="profileonscratch" onclick="openscratchuser()">
 <i class="fa fa-download mr-2"></i>
 View Profile
 </a>
@@ -787,12 +777,6 @@ View Profile
 </div>
 </section>
 <span id="usermessagecount"></span>
-<div class="text-center mt-4">
-<a class="btn btn-xl btn-outline-light" onclick="openscratchuser()">
-<i class="fa fa-download mr-2"></i>
-View Profile
-</a>
-</div>
 <script>
 //Raytracing
 var getuserinputdata = -1;
@@ -812,7 +796,6 @@ else {scratchusername=getuserinputdata}
 updatepageuser();
 function updatepageuser() {
 document.getElementById("usernamesearch").innerHTML = scratchusername;
-if (scratchusername.toLowerCase() == "-bonfire-" || scratchusername.toLowerCase() == "-strife-" || scratchusername.toLowerCase() == "raytracing") {document.getElementById("usernamesearch").innerHTML = scratchusername + " (The creator of the website)";}
 document.title = scratchusername + " | Scratch Stats+";}
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
