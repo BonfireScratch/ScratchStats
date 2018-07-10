@@ -411,7 +411,7 @@ img.mfp-img {
         <img style="border-radius: 20px;" align="middle" height="60px" id="userdisplaylogo" src="//cdn2.scratch.mit.edu/get_image/user/default_60x60.png" width="60px" id="userlogo" />
         <h1 class="text-uppercase mb-0" id="displayusername"></h1>
         <hr class="star-light">
-        <h2 class="font-weight-light mb-0">Day Joined - Country - # Of Messages</h2>
+        <h2 class="font-weight-light mb-0" id="userbasicinfo"></h2>
       </div>
     </header>
 
@@ -514,7 +514,7 @@ function loadpagefromAPI() {
     
 
     // Represent Data
-    //document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
+    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
