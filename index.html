@@ -746,9 +746,11 @@ img.mfp-img {
 </head>
 <body id="page-top">
 <header class="masthead bg-primary text-white text-center">
-<div align="middle">
-<img id="userdisplaylogo" src="//cdn2.scratch.mit.edu/get_image/user/default_60x60.png"/ style="border-radius: 20px">
-<div id="usernamesearch"></div>
+<div class="container">
+<img id="userdisplaylogo" src="//cdn2.scratch.mit.edu/get_image/user/default_60x60.png"/ style="border-radius: 20px" align="middle">
+<h1 class="text-uppercase mb-0" id="usernamesearch"></h1>
+<hr class="star-light">
+</div>
 </header>
 </div>
 <br>
@@ -786,7 +788,7 @@ View Profile
 </section>
 <span id="usermessagecount"></span>
 <div class="text-center mt-4">
-<a class="btn btn-xl btn-outline-light" href="#">
+<a class="btn btn-xl btn-outline-light" onclick="openscratchuser()">
 <i class="fa fa-download mr-2"></i>
 View Profile
 </a>
@@ -874,5 +876,6 @@ function getMessageCount() {
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
 xhttp.send();
 }
+function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);}
 </script>
 </body>
