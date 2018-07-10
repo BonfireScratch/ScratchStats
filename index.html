@@ -446,12 +446,12 @@ function loadpagefromAPI() {
     var replacechar = '\\"';
     useraboutme = useraboutme.split(replacechar).join('"');
     userdescription = userdescription.split(replacechar).join('"');
-    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
+    getMessageCount();
+    document.getElementById("userbasicinfo").innerHTML = "Day Joined: ", userjoindate," - Country: ", usercountry," - ", usermessages" Messages";
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("userdisplayaboutme").innerHTML = useraboutme;
     document.getElementById("userdisplaydescription").innerHTML = userdescription;
     updatepageuser();
-    getMessageCount();
 }
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
