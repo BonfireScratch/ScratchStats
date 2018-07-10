@@ -371,12 +371,12 @@ body{font-family:Lato}h1,h2,h3,h4,h5,h6{font-weight:700;font-family:Montserrat}h
 <div class="container">
 <img id="userdisplaylogo" src="//cdn2.scratch.mit.edu/get_image/user/default_60x60.png"/ style="border-radius: 20px" align="middle">
 <h1 class="text-uppercase mb-0" id="usernamesearch"></h1>
-<hr class="star-light">
+<hr class="star-light"></hr>
+<h2 class="font-weight-light mb-0" id="userbasicinfo"></h2>
 </div>
 </header>
 </div>
 <br>
-<div id="userbasicinfo"></div>
 <br>
 <section class="bg-primary text-white mb-0" id="about">
 <div class="container">
@@ -475,7 +475,7 @@ function getMessageCount() {
         if (this.readyState == 4 && this.status == 200) {
            var response = xhttp.responseText;
            usermessages = getElementFromAPI(response,"\"count\"","true");
-           document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
+           //document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
     }
 };
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
