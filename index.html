@@ -448,9 +448,9 @@ var getuserinputdata = window.location.href.substring(window.location.href.index
 
 // Setup Variables
 
-var scratchusername
+var scratchusername;
 var userAPIdata;
-var usermessages;
+var messages;
 
 // Username Ask/find
 
@@ -514,8 +514,8 @@ function loadpagefromAPI() {
     
 
     // Represent Data
-    getMessageCount();
-    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + ", - Country: " + usercountry + ", - Message Count: " + usermessages;
+    getMessageCount()
+    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + ", - Country: " + usercountry + ", - Message Count: " + messages;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
@@ -550,7 +550,7 @@ function getMessageCount() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            var response = xhttp.responseText;
-           usermessages = getElementFromAPI(response,"\"count\"","true");
+           messages = getElementFromAPI(response,"\"count\"","true");
            //document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
        
     }
