@@ -383,7 +383,6 @@ img.mfp-img {
   </head>
 
   <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
@@ -516,7 +515,7 @@ function loadpagefromAPI() {
 
     // Represent Data
     getMessageCount()
-    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + ", - Country: " + usercountry + ", - Message Count: " + messages;
+    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + " - Country: " + usercountry + " - Message Count: " + messages;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
@@ -548,16 +547,17 @@ function getElementFromAPI(API,element,isinterger) {
 function getMessageCount() {
 
     var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
+	xhttp.send();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            var response = xhttp.responseText;
            messages = getElementFromAPI(response,"\"count\"","true");
-           //document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
+           document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
        
     }
 };
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
-xhttp.send();
+
 }
       
 function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);
