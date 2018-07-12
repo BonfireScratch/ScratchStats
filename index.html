@@ -451,12 +451,10 @@ var getuserinputdata = window.location.href.substring(window.location.href.index
 var scratchusername;
 var userAPIdata;
 var messages;
-finder();
 
 // Username Ask/find
 
 
-function finder(){
 if (getuserinputdata == -1) {
 var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
 scratchusername = scratchusername.replace("@",""); // In case of Tag
@@ -473,7 +471,6 @@ document.getElementById("displayusername").innerHTML = scratchusername;
 
 
 document.title = scratchusername + " | Stats+";
-}
 }
 
 // Get API
