@@ -398,7 +398,7 @@ img.mfp-img {
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Search Projects</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Search Users</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="finder()">Search Users</a>
             </li>
           </ul>
         </div>
@@ -454,6 +454,8 @@ var messages;
 
 // Username Ask/find
 
+
+function finder(){
 if (getuserinputdata == -1) {
 var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
 scratchusername = scratchusername.replace("@",""); // In case of Tag
@@ -470,6 +472,7 @@ document.getElementById("displayusername").innerHTML = scratchusername;
 
 
 document.title = scratchusername + " | Stats+";
+}
 }
 
 // Get API
@@ -561,5 +564,6 @@ xhttp.send();
       
 function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);
 }
+finder()
     </script>
     </html>
