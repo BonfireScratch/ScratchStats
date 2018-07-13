@@ -411,6 +411,7 @@ img.mfp-img {
         <h1 class="text-uppercase mb-0" id="displayusername"></h1>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0" id="userbasicinfo"></h2>
+		<h2 class="font-weight-light mb-0" id="usermessagecount"></h2>
       </div>
     </header>
 
@@ -436,6 +437,7 @@ img.mfp-img {
           </a>
         </div>
       </div>
+	  
     </section>
     <script>
     // Get Hash
@@ -449,7 +451,7 @@ var getuserinputdata = window.location.href.substring(window.location.href.index
 
 var scratchusername;
 var userAPIdata;
-var messages;
+var usermessages;
 
 // Username Ask/find
 
@@ -514,8 +516,8 @@ function loadpagefromAPI() {
     
 
     // Represent Data
-    getMessageCount()
-    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + " - Country: " + usercountry + " - Message Count: " + messages;
+    getMessageCount();
+    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + " - Country: " + usercountry;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
@@ -543,23 +545,22 @@ function getElementFromAPI(API,element,isinterger) {
     
     return str;
 }
-
+   
 function getMessageCount() {
 
     var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
-	xhttp.send();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            var response = xhttp.responseText;
-           messages = getElementFromAPI(response,"\"count\"","true");
+           usermessages = getElementFromAPI(response,"\"count\"","true");
            document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
        
     }
 };
-
+xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
+xhttp.send();
 }
-      
+
 function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);
 }
 
