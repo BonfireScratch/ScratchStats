@@ -10,13 +10,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title></title>
+    <title>Stats+</title>
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link rel="icon" href="capture_PAt_icon.ico" type="image/x-icon">
 
   <style>
    /*!
@@ -472,56 +471,42 @@ img.mfp-img {
 		  </div>
 		 </div>
     <script>
-    // Get Hash
-
 var getuserinputdata = -1;
-
 if (window.location.href.indexOf("#") != -1) {
 var getuserinputdata = window.location.href.substring(window.location.href.indexOf("#") + 1);}
-
 // Setup Variables
-
-//var name = document.getElementById("user");
-var scratchusername;// = name.value;
+var scratchusername
 var userAPIdata;
 var usermessages;
-
 // Username Ask/find
-
-
 if (getuserinputdata == -1) {
 var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
 scratchusername = scratchusername.replace("@",""); // In case of Tag
 scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
 scratchusername = scratchusername.replace("/","");                                //URL to Pure Name
 window.location.href = window.location.href + "#" + scratchusername;
-userUpdate(scratchusername);
 }
 else {scratchusername=getuserinputdata}
-
 updatepageuser();
 function updatepageuser() {
 // Update title + Name
 document.getElementById("displayusername").innerHTML = scratchusername;
+// ScratchStats+ Crowns
 document.title = scratchusername + " | Stats+";
 }
-
 // Get API
-function userUpdate(name){
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        var response = xhttp.responseText;
        userAPIdata = response;
-       loadpagefromAPI(name);
+       loadpagefromAPI();
        
     }
-};}
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + name, true);
+};
+xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername, true);
 xhttp.send();
-
-function loadpagefromAPI(name) {
-
+function loadpagefromAPI() {
     var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
     var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
     var userlogo = getElementFromAPI(userAPIdata,"\"90x90\"");
@@ -529,35 +514,25 @@ function loadpagefromAPI(name) {
     var userdescription = getElementFromAPI(userAPIdata,"\"status\"");
     var userjoindate = getElementFromAPI(userAPIdata,"\"joined\"").substring(0,10);
     scratchusername = getElementFromAPI(userAPIdata,"\"username\"");
-
     // Modify Data
     
     var replacechar = '\\n';
-
     useraboutme = useraboutme.split(replacechar).join(" ");
     userdescription = userdescription.split(replacechar).join(" ");
     if (useraboutme=="\",") {useraboutme = "";}
     if (userdescription=="\",") {userdescription = "";}
-
-
     var replacechar = '\\"';
-
     useraboutme = useraboutme.split(replacechar).join('"');
     userdescription = userdescription.split(replacechar).join('"');
-
     
-
     // Represent Data
-    getMessageCount();
-    document.getElementById("userbasicinfo").innerHTML = "Day Joined: " + userjoindate + " - Country: " + usercountry;
+    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
     updatepageuser();
-
-    
+    getMessageCount()
 }
-
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
     var i = API.indexOf(element)+element.length+2;if (isinterger == "true") {i=i-1}
@@ -569,7 +544,6 @@ function getElementFromAPI(API,element,isinterger) {
         } while (API.charAt(i) != "," && i < API.length && API.charAt(i) != "}")
         
     } else {
-
     do {
         str = str + API.charAt(i);
         i = i+1;
@@ -577,9 +551,7 @@ function getElementFromAPI(API,element,isinterger) {
     
     return str;
 }
-   
-function getMessageCount(name) {
-
+function getMessageCount() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -592,9 +564,8 @@ function getMessageCount(name) {
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
 xhttp.send();
 }
-
-function openscratchuser() { window.open("https://scratch.mit.edu/users/" +scratchusername);
+      
+function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);
 }
-
     </script>
     </html>
