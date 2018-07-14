@@ -10,12 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stats+</title> 
-    <link rel="icon" href="capture_PAt_icon.ico" type="image/x-icon">
+    <title></title>
+	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="icon" href="capture_PAt_icon.ico" type="image/x-icon">
 
   <style>
    /*!
@@ -410,7 +411,7 @@ img.mfp-img {
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Search Projects</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Search Users</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="document.getElementById('id01').style.display='block'">Search Users</a>
             </li>
           </ul>
         </div>
@@ -420,7 +421,7 @@ img.mfp-img {
     <!-- Header -->
     <header class="masthead bg-primary text-white text-center">
       <div class="container">
-        <img style="border-radius: 20px;" align="middle" height="90px" id="userdisplaylogo" src="//cdn2.scratch.mit.edu/get_image/user/default_90x90.png" width="90px" id="userlogo" />
+        <img style="border-radius: 20px;" align="middle" height="90px" id="userdisplaylogo" src="//cdn2.scratch.mit.edu/get_image/user/default_90x90.png" width="90px" id="userlogo"/>
         <h1 class="text-uppercase mb-0" id="displayusername"></h1>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0" id="userbasicinfo"></h2>
@@ -450,8 +451,9 @@ img.mfp-img {
           </a>
         </div>
       </div>
-	    
-	<!-- Modal -->
+    </section>
+	
+    <!-- Modal -->
 	<div id="id01" class="modal animate-opacity">
 	    <div class="modal-content card-4">
 		   <header class="cont teal">
@@ -465,11 +467,10 @@ img.mfp-img {
 			<div class="center">
 			<button class="button green" onclick="getData">Get Stats</button>
 			</div>
-                 </footer>
-                </div>
+           </footer>
+          </div>
 		  </div>
 		 </div>
-    </section>
     <script>
     // Get Hash
 
@@ -480,7 +481,8 @@ var getuserinputdata = window.location.href.substring(window.location.href.index
 
 // Setup Variables
 
-var scratchusername;
+//var name = document.getElementById("user");
+var scratchusername;// = name.value;
 var userAPIdata;
 var usermessages;
 
@@ -493,6 +495,7 @@ scratchusername = scratchusername.replace("@",""); // In case of Tag
 scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
 scratchusername = scratchusername.replace("/","");                                //URL to Pure Name
 window.location.href = window.location.href + "#" + scratchusername;
+userUpdate(scratchusername);
 }
 else {scratchusername=getuserinputdata}
 
@@ -500,26 +503,24 @@ updatepageuser();
 function updatepageuser() {
 // Update title + Name
 document.getElementById("displayusername").innerHTML = scratchusername;
-
-
 document.title = scratchusername + " | Stats+";
 }
 
 // Get API
-
+function userUpdate(name){
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
        var response = xhttp.responseText;
        userAPIdata = response;
-       loadpagefromAPI();
+       loadpagefromAPI(name);
        
     }
-};
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername, true);
+};}
+xhttp.open("GET", "https://api.scratch.mit.edu/users/" + name, true);
 xhttp.send();
 
-function loadpagefromAPI() {
+function loadpagefromAPI(name) {
 
     var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
     var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
@@ -577,7 +578,7 @@ function getElementFromAPI(API,element,isinterger) {
     return str;
 }
    
-function getMessageCount() {
+function getMessageCount(name) {
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -592,7 +593,7 @@ xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/mes
 xhttp.send();
 }
 
-function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);
+function openscratchuser() { window.open("https://scratch.mit.edu/users/" +scratchusername);
 }
 
     </script>
