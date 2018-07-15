@@ -386,8 +386,9 @@ img.mfp-img {
 	.card-4,.w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
 	.large{font-size:18px!important}
 	.input{padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:100%}
+	.light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
 	.center{text-align:center!important}
-	.animate-input:focus{width:100%!important}
+	.animate-input:focus{width:100%!important; transition:width 0.4s ease-in-out;}
 	.green,.w3-hover-green:hover{color:#fff!important;background-color:#4CAF50!important}
 	.display-topright{position:absolute;right:0;top:0}
 	.button:hover{color:#000!important;background-color:#ccc!important}
@@ -459,18 +460,46 @@ img.mfp-img {
 		   <span onclick="document.getElementById('id01').style.display='none'" class="button large display-topright">&times;</span>
 		   <h2>Enter Scratcher Username or URL</h2>
 		   </header>
-		   <div class="cont">
-		   <input id="user" class="input animate-input" style="border:0!important; width:30%;" type="text" placeholder="griffpatch">
+		   <div class="cont light-grey">
+		   <input id="user" class="input animate-input" style="border:0!important; width:30%;" type="text" placeholder="griffpatch" required>
 			</div>
 			<footer class="cont teal">
 			<div class="center">
-			<button class="button green" onclick="getData">Get Stats</button>
+			<button class="button green" onclick="myFunction(user.value);">Get Stats</button>
 			</div>
            </footer>
           </div>
 		  </div>
 		 </div>
     <script>
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       var response = xhttp.responseText;
+       userAPIdata = response;
+       loadpagefromAPI();
+       
+    }
+};
+function myFunction(usertext) {
+document.getElementById('id01').style.display='none';
+usertext = usertext.replace("@",""); // In case of Tag
+usertext = usertext.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
+usertext = usertext.replace("/","");                                //URL to Pure Name
+scratchusername=usertext;
+window.location.href = window.location.href + "#" + usertext;
+
+// Update title + Name
+document.getElementById("displayusername").innerHTML = usertext;
+// ScratchStats+ Crowns
+document.title = usertext + " | Stats+";
+xhttp.open("GET", "https://api.scratch.mit.edu/users/" + usertext, true);
+xhttp.send();
+loadpagefromAPI();
+
+}
+
 var getuserinputdata = -1;
 if (window.location.href.indexOf("#") != -1) {
 var getuserinputdata = window.location.href.substring(window.location.href.indexOf("#") + 1);}
@@ -495,15 +524,7 @@ document.getElementById("displayusername").innerHTML = scratchusername;
 document.title = scratchusername + " | Stats+";
 }
 // Get API
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       var response = xhttp.responseText;
-       userAPIdata = response;
-       loadpagefromAPI();
-       
-    }
-};
+
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername, true);
 xhttp.send();
 function loadpagefromAPI() {
