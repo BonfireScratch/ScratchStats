@@ -464,7 +464,7 @@ img.mfp-img {
 			</div>
 			<footer class="cont teal">
 			<div class="center">
-			<button class="button green" onclick="myFunction(user.value);">Get Stats</button>
+			<button class="button green" onclick="user(user.value);">Get Stats</button>
 			</div>
            </footer>
           </div>
@@ -481,7 +481,7 @@ xhttp.onreadystatechange = function() {
        
     }
 };
-function myFunction(usertext) {
+function user(usertext) {
 document.getElementById('id01').style.display='none';
 usertext = usertext.replace("@",""); // In case of Tag
 usertext = usertext.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
