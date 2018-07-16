@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stats+</title>
+    <title>Scratchstats+</title>
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -396,7 +396,7 @@ img.mfp-img {
   </style>
   </head>
 
-  <body id="page-top">
+  <body id="page-top" onload="document.getElementById('id01').style.display='block'">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
       <div class="container">
@@ -501,19 +501,19 @@ loadpagefromAPI();
 }
 
 var getuserinputdata = -1;
-if (window.location.href.indexOf("#") != -1) {
-var getuserinputdata = window.location.href.substring(window.location.href.indexOf("#") + 1);}
+//if (window.location.href.indexOf("#") != -1) {
+//var getuserinputdata = window.location.href.substring(window.location.href.indexOf("#") + 1);}
 // Setup Variables
 var scratchusername
 var userAPIdata;
 var usermessages;
 // Username Ask/find
 if (getuserinputdata == -1) {
-var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
-scratchusername = scratchusername.replace("@",""); // In case of Tag
-scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
-scratchusername = scratchusername.replace("/","");                                //URL to Pure Name
-window.location.href = window.location.href + "#" + scratchusername;
+//var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
+//scratchusername = scratchusername.replace("@",""); // In case of Tag
+//scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
+//scratchusername = scratchusername.replace("/","");                                //URL to Pure Name
+//window.location.href = window.location.href + "#" + scratchusername;
 }
 else {scratchusername=getuserinputdata}
 updatepageuser();
