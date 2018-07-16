@@ -13,6 +13,7 @@
     <title>Scratchstats+</title>
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -546,7 +547,7 @@ function loadpagefromAPI() {
     userdescription = userdescription.split(replacechar).join('"');
     
     // Represent Data
-    document.getElementById("userbasicinfo").innerHTML = "Join date: " + userjoindate + " - Country: " + usercountry + " - ID: " + userid;
+    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
