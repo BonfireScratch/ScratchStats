@@ -13,7 +13,6 @@
     <title>Scratchstats+</title>
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -458,7 +457,7 @@ img.mfp-img {
 	    <div class="modal-content card-4">
 		   <header class="cont teal">
 		   <span onclick="document.getElementById('id01').style.display='none'" class="button large display-topright">&times;</span>
-		   <h2>Enter Scratcher Username or URL</h2>
+		   <h2 class="text-center text-uppercase text-white">Enter Scratcher Username or URL</h2>
 		   </header>
 		   <div class="cont light-grey">
 		   <input id="user" class="input animate-input" style="border:0!important; width:30%;" type="text" placeholder="griffpatch" required>
@@ -547,7 +546,7 @@ function loadpagefromAPI() {
     userdescription = userdescription.split(replacechar).join('"');
     
     // Represent Data
-    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
+    document.getElementById("userbasicinfo").innerHTML = "Join date: " + userjoindate + " - Country: " + usercountry + " - ID: " + userid;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
