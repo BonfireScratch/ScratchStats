@@ -44,11 +44,20 @@
       <div class="container">
 	  <h1 class="text-uppercase mb-0">Global Stats</h1>
 	  <hr class="star-light">
+	  <h2 class="font-weight-bold mb-0">Community Stats</h2>
+	  <br>
 	  <h2 class="font-weight-light mb-0" id="projects"></h2>
 	  <h2 class="font-weight-light mb-0" id="users"></h2>
 	  <h2 class="font-weight-light mb-0" id="studios"></h2>
 	  <h2 class="font-weight-light mb-0" id="comments"></h2>
 	  <h2 class="font-weight-light mb-0">... and growing!</h2>
+	  <hr class="star-light">
+	  <h2 class="font-weight-bold mb-0">Website Stats</h2>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="websiteviews"></h2>
+	  <h2 class="font-weight-light mb-0" id="newvisits"></h2>
+	  <h2 class="font-weight-light mb-0" id="visits"></h2>
+	  <h2 class="font-weight-light mb-0">... and counting!</h2>
       </div>
     </header>
 <script>
@@ -66,10 +75,31 @@
           document.getElementById("studios").innerHTML = studios + " studios created";
           document.getElementById("comments").innerHTML = comments + " comments posted,";
           document.getElementById("users").innerHTML = users + " users registered";
+		  loadwebsite();
       }
   };
 xhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://scratch.mit.edu/statistics/data/daily/", true);
 xhttp.send();
+
+    function loadwebsite() {
+    
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           var response = xhttp.responseText;
+           obj = JSON.parse(response);
+          pageviews = obj.pageviews;
+		  users = obj.users;
+		  sessions = obj.sessions;
+          document.getElementById("websiteviews").innerHTML = pageviews + " pageviews,";
+          document.getElementById("newvisits").innerHTML = users + " unique visitors,";
+          document.getElementById("visits").innerHTML = sessions + " visits";
+      }
+  };
+  xhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://scratch.mit.edu/statistics/data/monthly-ga/", true);
+  xhttp.send();
+    
+  }
 </script>
 </body>
 </html>
