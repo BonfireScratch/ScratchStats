@@ -13,7 +13,6 @@
 	
 	<link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
@@ -58,9 +57,53 @@
 	  <h2 class="font-weight-light mb-0" id="newvisits"></h2>
 	  <h2 class="font-weight-light mb-0" id="visits"></h2>
 	  <h2 class="font-weight-light mb-0">... and counting!</h2>
+	  <br>
+	  <hr class="star-light">
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Popular Projects (from Explore)</h2>
+	  <br>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title1"></h2>
+	  <img id="thumb1" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title2"></h2>
+	  <img id="thumb2" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title3"></h2>
+	  <img id="thumb3" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title4"></h2>
+	  <img id="thumb4" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <hr class="star-light">
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Trending Projects (from Explore)</h2>
+	  <br>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title11"></h2>
+	  <img id="thumb11" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title21"></h2>
+	  <img id="thumb21" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title31"></h2>
+	  <img id="thumb31" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="title41"></h2>
+	  <img id="thumb41" style="width: 280px; height: 210px; border-radius: 20px;"></img>
       </div>
     </header>
 <script>
+init();
+
+function init(){
+	popularProjects();
+	trendingProjects();
+	loadcommunity();
+	loadwebsite();
+}
+
+function loadcommunity(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -75,12 +118,10 @@
           document.getElementById("studios").innerHTML = studios + " studios created";
           document.getElementById("comments").innerHTML = comments + " comments posted,";
           document.getElementById("users").innerHTML = users + " users registered";
-		  loadwebsite();
       }
   };
 xhttp.open("GET", "https://cors-anywhere.herokuapp.com/https://scratch.mit.edu/statistics/data/daily/", true);
-xhttp.send();
-
+xhttp.send();}
     function loadwebsite() {
     
       var xhttp = new XMLHttpRequest();
@@ -100,6 +141,54 @@ xhttp.send();
   xhttp.send();
     
   }
+  
+  function popularProjects () {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=popular&q=*', true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var response = xmlhttp.responseText;
+            var obj = JSON.parse(response);
+            var firstProject = obj[0];
+            var secondProject = obj[1];
+            var thirdProject = obj[2];
+            var fourthProject = obj[3];
+			document.getElementById("title1").innerHTML = firstProject.title.substring(0,40);
+			document.getElementById("thumb1").src = firstProject.image;
+			document.getElementById("title2").innerHTML = secondProject.title.substring(0,40);
+			document.getElementById("thumb2").src = secondProject.image;
+			document.getElementById("title3").innerHTML = thirdProject.title.substring(0,40);
+			document.getElementById("thumb3").src = thirdProject.image;
+			document.getElementById("title4").innerHTML = fourthProject.title.substring(0,40);
+			document.getElementById("thumb4").src = fourthProject.image;
+		}
+    };
+}
+
+  function trendingProjects () {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=trending&q=*', true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var response = xmlhttp.responseText;
+            var obj = JSON.parse(response);
+            var firsProject = obj[0];
+            var seconProject = obj[1];
+            var thirProject = obj[2];
+            var fourtProject = obj[3];
+			document.getElementById("title11").innerHTML = firsProject.title.substring(0,40);
+			document.getElementById("thumb11").src = firsProject.image;
+			document.getElementById("title21").innerHTML = seconProject.title.substring(0,40);
+			document.getElementById("thumb21").src = seconProject.image;
+			document.getElementById("title31").innerHTML = thirProject.title.substring(0,40);
+			document.getElementById("thumb31").src = thirProject.image;
+			document.getElementById("title41").innerHTML = fourtProject.title.substring(0,40);
+			document.getElementById("thumb41").src = fourtProject.image;
+		}
+    };
+}
 </script>
 </body>
 </html>
