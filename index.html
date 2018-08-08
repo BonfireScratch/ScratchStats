@@ -11,13 +11,11 @@
     <meta name="author" content="">
 
     <title>Scratchstats+</title>
-    <link rel="stylesheet" href="style.css">
+	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-
+	<link rel="stylesheet" href="style.css">
   </head>
 
   <body id="page-top" onload="document.getElementById('id01').style.display='block'">
@@ -84,7 +82,7 @@
 	<div id="id01" class="modal animate-opacity">
 	    <div class="modal-content card-4">
 		   <header class="cont teal">
-		   <span onclick="document.getElementById('id01').style.display='none'" class="button large display-topright" style="webkit-transform:0.4s;">&times;</span>
+		   <span onclick="document.getElementById('id01').style.display='none'" class="button large display-topright">&times;</span>
 		   <h2 class="font-weight-light mb-0">Enter Scratcher Username or URL</h2>
 		   </header>
 		   <div class="cont light-grey">
@@ -109,6 +107,7 @@ xhttp.onreadystatechange = function() {
        
     }
 };
+
 
 function myFunction(usertext) {
 document.getElementById('id01').style.display='none';
@@ -138,11 +137,7 @@ var usermessages;
 var oldprojects;
 // Username Ask/find
 if (getuserinputdata == -1) {
-//var scratchusername = prompt("Enter Scratcher Username or URL:","griffpatch");
-//scratchusername = scratchusername.replace("@",""); // In case of Tag
-//scratchusername = scratchusername.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
-//scratchusername = scratchusername.replace("/","");                                //URL to Pure Name
-//window.location.href = window.location.href + "#" + scratchusername;
+
 }
 else {scratchusername=getuserinputdata}
 updatepageuser();
@@ -176,7 +171,7 @@ function loadpagefromAPI() {
     userdescription = userdescription.split(replacechar).join('"');
     
     // Represent Data
-    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + ", User ID: " + userid + ", Join date: " + userjoindate;
+    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + " - User ID: " + userid + " - Join date: " + userjoindate;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
     document.getElementById("wiwo").innerHTML = userdescription;
