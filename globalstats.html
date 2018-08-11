@@ -12,6 +12,7 @@
     <title>Scratchstats+ | Global Stats</title>
 	
 	<link rel="stylesheet" href="style.css">
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -57,42 +58,79 @@
 	  <h2 class="font-weight-light mb-0" id="newvisits"></h2>
 	  <h2 class="font-weight-light mb-0" id="visits"></h2>
 	  <h2 class="font-weight-light mb-0">... and counting!</h2>
+    </header>
+	<br>
+	<br>
+	<center>
+	  <h2 class="font-weight-bold mb-0">Trending Projects (from Explore)</h2>
+	  <hr class="star-dark">
 	  <br>
-	  <hr class="star-light">
 	  <br>
-	  <h2 class="font-weight-bold mb-0">Popular Projects (from Explore)</h2>
-	  <br>
-	  <br>
+	  <table>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title1"></h2>
 	  <img id="thumb1" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-	  <br>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title2"></h2>
 	  <img id="thumb2" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-	  <br>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title3"></h2>
 	  <img id="thumb3" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-	  <br>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title4"></h2>
 	  <img id="thumb4" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  </table>
 	  <br>
-	  <hr class="star-light">
 	  <br>
-	  <h2 class="font-weight-bold mb-0">Trending Projects (from Explore)</h2>
+	  <h2 class="font-weight-bold mb-0">Popular Projects (from Explore)</h2>
+	  <hr class="star-dark">
 	  <br>
 	  <br>
+	  <table>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title11"></h2>
 	  <img id="thumb11" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-	  <br>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title21"></h2>
 	  <img id="thumb21" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-	  <br>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title31"></h2>
 	  <img id="thumb31" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-	  <br>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
 	  <h2 class="font-weight-light mb-0" id="title41"></h2>
 	  <img id="thumb41" style="width: 280px; height: 210px; border-radius: 20px;"></img>
-      </div>
-    </header>
+	  </center>
+	  </td>
+	  </table>
+	  </center>
+
+	
+	
+	
+	<header class="masthead bg-primary text-white text-center">
+	</header>
 <script>
 init();
 
@@ -154,13 +192,13 @@ xhttp.send();}
             var secondProject = obj[1];
             var thirdProject = obj[2];
             var fourthProject = obj[3];
-			document.getElementById("title1").innerHTML = firstProject.title.substring(0,40);
+			document.getElementById("title1").innerHTML = firstProject.title.substring(0,21);
 			document.getElementById("thumb1").src = firstProject.image;
-			document.getElementById("title2").innerHTML = secondProject.title.substring(0,40);
+			document.getElementById("title2").innerHTML = secondProject.title.substring(0,21);
 			document.getElementById("thumb2").src = secondProject.image;
-			document.getElementById("title3").innerHTML = thirdProject.title.substring(0,40);
+			document.getElementById("title3").innerHTML = thirdProject.title.substring(0,21);
 			document.getElementById("thumb3").src = thirdProject.image;
-			document.getElementById("title4").innerHTML = fourthProject.title.substring(0,40);
+			document.getElementById("title4").innerHTML = fourthProject.title.substring(0,21);
 			document.getElementById("thumb4").src = fourthProject.image;
 		}
     };
@@ -178,13 +216,13 @@ xhttp.send();}
             var seconProject = obj[1];
             var thirProject = obj[2];
             var fourtProject = obj[3];
-			document.getElementById("title11").innerHTML = firsProject.title.substring(0,40);
+			document.getElementById("title11").innerHTML = firsProject.title.substring(0,21);
 			document.getElementById("thumb11").src = firsProject.image;
-			document.getElementById("title21").innerHTML = seconProject.title.substring(0,40);
+			document.getElementById("title21").innerHTML = seconProject.title.substring(0,21);
 			document.getElementById("thumb21").src = seconProject.image;
-			document.getElementById("title31").innerHTML = thirProject.title.substring(0,40);
+			document.getElementById("title31").innerHTML = thirProject.title.substring(0,21);
 			document.getElementById("thumb31").src = thirProject.image;
-			document.getElementById("title41").innerHTML = fourtProject.title.substring(0,40);
+			document.getElementById("title41").innerHTML = fourtProject.title.substring(0,21);
 			document.getElementById("thumb41").src = fourtProject.image;
 		}
     };
