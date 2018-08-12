@@ -52,11 +52,40 @@
         <h2 class="font-weight-light mb-0" id="userbasicinfo"></h2>
 		<h2 class="font-weight-light mb-0" id="usermessagecount"></h2>
 		<h2 class="font-weight-light mb-0" id="activitycount"></h2>
+		<h2 class="font-weight-light mb-0" id="browser">Browser: Chrome</h2>
+		<h2 class="font-weight-light mb-0" id="OS">OS: Windows 7</h2>
       </div>
     </header>
-
-  
-
+    <br>
+	<br>
+	<!-- Projects -->
+	<h1 class="text-center text-uppercase text-black">Projects</h1>
+	<hr class="star-dark">
+	<h2 class="font-weight-light mb-0 text-center" id="projectscount"></h2>
+	<center>
+	<table>
+	 <td>
+	 <center>
+	 <h2 class="font-weight-light mb-0" id="title1">Cake</h2>
+	 <img id="thumb11" style="width: 280px; height: 210px; border-radius: 20px;" src="pic.png"></img>
+	 </center>
+	 </td>
+	 <td>
+	 <center>
+	 <h2 class="font-weight-light mb-0" id="title2">Safe</h2>
+	 <img id="thumb21" style="width: 280px; height: 210px; border-radius: 20px;" src="pic2.png"></img>
+	 </center>
+	 </td>
+	 <td>
+	 <center>
+	 <h2 class="font-weight-light mb-0" id="title3">Hut</h2>
+	 <img id="thumb31" style="width: 280px; height: 210px; border-radius: 20px;" src="pic3.png"></img>
+	 </center>
+	 </td>
+	 </table>
+	 </center>
+	<br>
+	<br>
     <!-- About Section -->
     <section class="bg-primary text-white mb-0" id="about">
       <div class="container">
@@ -112,47 +141,41 @@ xhttp.onreadystatechange = function() {
 
 function myFunction(usertext) {
 document.getElementById('id01').style.display='none';
-usertext = usertext.replace("@",""); // In case of Tag
-usertext = usertext.replace("https://scratch.mit.edu/users/","");   //URL to Pure Name
-usertext = usertext.replace("/","");                                //URL to Pure Name
+usertext = usertext.replace("@","");
+usertext = usertext.replace("https://scratch.mit.edu/users/","");
+usertext = usertext.replace("/","");
 scratchusername=usertext;
 window.location.href = window.location.href + "#" + usertext;
-
-// Update title + Name
 document.getElementById("displayusername").innerHTML = usertext;
-// ScratchStats+ Crowns
 document.title = usertext + " | Stats+";
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + usertext, true);
 xhttp.send();
 loadpagefromAPI();
-
 }
-
 var getuserinputdata = -1;
-//if (window.location.href.indexOf("#") != -1) {
-//var getuserinputdata = window.location.href.substring(window.location.href.indexOf("#") + 1);}
-// Setup Variables
 var scratchusername;
 var userAPIdata;
 var usermessages;
 var oldprojects;
-// Username Ask/find
+var offset;
+var i;
+var userprojects;
+var os;
 if (getuserinputdata == -1) {
 
 }
 else {scratchusername=getuserinputdata}
 updatepageuser();
 function updatepageuser() {
-// Update title + Name
 document.getElementById("displayusername").innerHTML = scratchusername;
-// ScratchStats+ Crowns
 document.title = scratchusername + " | Stats+";
 }
-// Get API
 
 xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername, true);
 xhttp.send();
 function loadpagefromAPI() {
+	offset = 0;
+	userprojects = 0;
     var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
     var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
     var userlogo = getElementFromAPI(userAPIdata,"\"90x90\"");
@@ -160,7 +183,6 @@ function loadpagefromAPI() {
     var userdescription = getElementFromAPI(userAPIdata,"\"status\"");
     var userjoindate = getElementFromAPI(userAPIdata,"\"joined\"").substring(0,10);
     scratchusername = getElementFromAPI(userAPIdata,"\"username\"");
-    // Modify Data
     
     var replacechar = '\\n';
     useraboutme = useraboutme.split(replacechar).join(" ");
@@ -171,7 +193,6 @@ function loadpagefromAPI() {
     useraboutme = useraboutme.split(replacechar).join('"');
     userdescription = userdescription.split(replacechar).join('"');
     
-    // Represent Data
     document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + " - User ID: " + userid + " - Join date: " + userjoindate;
     document.getElementById("userdisplaylogo").src = userlogo;
     document.getElementById("aboutme").innerHTML = useraboutme;
@@ -179,6 +200,7 @@ function loadpagefromAPI() {
     updatepageuser();
     getMessageCount();
 	getActivity();
+	getProjects();
 }
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
@@ -225,5 +247,78 @@ function getActivity() {
 		}
 	};
 }
+function getProjects() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/projects?offset=" + offset, true);
+	xhttp.send();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var responsex = xhttp.responseText;
+			var obj = JSON.parse(responsex);
+			var i = 0;
+			if(obj.length > 0) {
+				lastProject = obj[obj.length-1].id;
+				lastProject2 = obj.length!==1?obj[obj.length-2].id:0;
+				lastProject3t = obj.length!==1?obj[obj.length-3].title:0;
+				lastProject2t = obj.length!==1?obj[obj.length-2].title:0;
+				lastProjectt = obj[obj.length-1].title;
+				lastProject3p = obj.length!==1?obj[obj.length-3].image:0;
+				lastProject2p = obj.length!==1?obj[obj.length-2].image:0;
+				lastProjectp = obj[obj.length-1].image;
+			}
+			while(i < obj.length) {
+				i++
+			}
+			userprojects = userprojects + i;
+			if (obj.length === 20) {
+				offset = offset + 20;
+				setTimeout(function(){getProjects(); }, 150);
+			} else{
+				document.getElementById("projectscount").innerHTML = "Shared Projects: " + userprojects;
+				getBrowser(lastProject, lastProject2);
+				document.getElementById("title1").innerHTML = lastProjectt;
+				document.getElementById("title2").innerHTML = lastProject2t;
+				document.getElementById("title3").innerHTML = lastProject3t;
+				document.getElementById("thumb11").src = lastProjectp;
+				document.getElementById("thumb21").src = lastProject2p;
+				document.getElementById("thumb31").src = lastProject3p;
+			}
+		}
+	}
+}
+function getBrowser(id,id2){
+    checkua = new XMLHttpRequest();
+    checkua.open("GET", 'https://cdn.projects.scratch.mit.edu/internalapi/project/' + id + '/get/', true);
+    checkua.send();
+    checkua.onreadystatechange = function() {
+                if (checkua.readyState === 4 && checkua.status === 200) {
+					useragent = JSON.parse(checkua.responseText).info.userAgent;
+						if(useragent===undefined){
+							if(id2!==0)getBrowser(id2,0);
+							document.getElementById("browser").innerHTML = "Unknown";
+							os = "Unknown";
+							return;
+						}
+						getinfo = new XMLHttpRequest();
+						getinfo.open("GET", 'https://helloacm.com/api/parse-user-agent/?s=' + encodeURI(useragent), true);
+						getinfo.send();
+						getinfo.onreadystatechange = function() {
+							if (getinfo.readyState === 4 && getinfo.status === 200) {
+								document.getElementById("browser").innerHTML = "Browser: " + JSON.parse(getinfo.responseText).browser;
+								getinfo = new XMLHttpRequest();
+								getinfo.open("GET", 'https://cors-anywhere.herokuapp.com/http://www.useragentstring.com/?uas=' + encodeURI(useragent) + "&getJSON=os_name", true);
+								getinfo.send();
+								getinfo.onreadystatechange = function() {
+									if (getinfo.readyState === 4 && getinfo.status === 200) {
+										os = JSON.parse(getinfo.responseText).os_name;
+										document.getElementById("OS").innerHTML = "OS: " + os;
+									}
+								};
+							}
+						}
+				};
+	};
+}
+
 </script>
     </html>
