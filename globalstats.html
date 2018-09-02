@@ -12,7 +12,6 @@
     <title>Scratchstats+ | Global Stats</title>
 	
 	<link rel="stylesheet" href="style.css">
-	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -29,7 +28,7 @@
           <ul class="navbar-nav ml-auto">
 		    <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#">Global Stats</a>
-</li>
+            </li>
             <li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Search Users</a>
             </li>
@@ -59,6 +58,81 @@
 	<br>
 	<br>
 	<center>
+	  
+	  <br>
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Featured Projects</h2>
+	  <hr class="star-dark">
+	  <br>
+	  <br>
+	  <table>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title14"></h2>
+	  <img id="thumb14" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title24"></h2>
+	  <img id="thumb24" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title34"></h2>
+	  <img id="thumb34" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title44"></h2>
+	  <img id="thumb44" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  </table>
+	  <br>
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Curated Projects</h2>
+	  <hr class="star-dark">
+	  <br>
+	  <br>
+	  <h2 class="font-weight-light mb-0" id="curatorname"></h2>
+	  <br>
+	  <table>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title13"></h2>
+	  <img id="thumb13" style="width: 240px; height: 180px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title23"></h2>
+	  <img id="thumb23" style="width: 240px; height: 180px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title33"></h2>
+	  <img id="thumb33" style="width: 240px; height: 180px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title43"></h2>
+	  <img id="thumb43" style="width: 240px; height: 180px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title53"></h2>
+	  <img id="thumb53" style="width: 240px; height: 180px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  </table>
+	  <br>
+	  <br>
 	  <h2 class="font-weight-bold mb-0">Trending Projects (from Explore)</h2>
 	  <hr class="star-dark">
 	  <br>
@@ -121,11 +195,39 @@
 	  </center>
 	  </td>
 	  </table>
+	  <br>
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Recent Projects (from Explore)</h2>
+	  <hr class="star-dark">
+	  <br>
+	  <br>
+	  <table>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title12"></h2>
+	  <img id="thumb12" style="width: 280px; height: 210px; border-radius: 20px;"></img>
 	  </center>
-
-	
-	
-	
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title22"></h2>
+	  <img id="thumb22" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title32"></h2>
+	  <img id="thumb32" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title42"></h2>
+	  <img id="thumb42" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  </table>
+	  </center>
 	<header class="masthead bg-primary text-white text-center">
 	</header>
 <script>
@@ -136,6 +238,8 @@ function init(){
 	trendingProjects();
 	loadcommunity();
 	loadwebsite();
+	recentProjects();
+	getCurator();
 }
 
 function loadcommunity(){
@@ -221,6 +325,81 @@ xhttp.send();}
 			document.getElementById("thumb31").src = thirProject.image;
 			document.getElementById("title41").innerHTML = fourtProject.title.substring(0,21);
 			document.getElementById("thumb41").src = fourtProject.image;
+		}
+    };
+}
+
+  function recentProjects () {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=recent&q=*', true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var response = xmlhttp.responseText;
+            var obj = JSON.parse(response);
+            var firsProject = obj[0];
+            var seconProject = obj[1];
+            var thirProject = obj[2];
+            var fourtProject = obj[3];
+		    document.getElementById("title12").innerHTML = firsProject.title.substring(0,21);
+			document.getElementById("thumb12").src = firsProject.image;
+			document.getElementById("title22").innerHTML = seconProject.title.substring(0,21);
+			document.getElementById("thumb22").src = seconProject.image;
+			document.getElementById("title32").innerHTML = thirProject.title.substring(0,21);
+			document.getElementById("thumb32").src = thirProject.image;
+			document.getElementById("title42").innerHTML = fourtProject.title.substring(0,21);
+			document.getElementById("thumb42").src = fourtProject.image;
+		}
+    };
+}
+  function getCurator () {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET', 'https://api.scratch.mit.edu/proxy/featured', true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var response = xmlhttp.responseText;
+            var obj = JSON.parse(response);
+            var curated = obj.curator_top_projects;
+			var firsProject = curated[0];
+            var seconProject = curated[1];
+            var thirProject = curated[2];
+            var fourtProject = curated[3];
+			var fiftProject = curated[4];
+			var firstprojectid = firsProject.id;
+			var secondprojectid = seconProject.id;
+			var thirdprojectid = thirProject.id;
+			var fourtprojectid = fourtProject.id;
+			var fifthprojectid = fiftProject.id;
+			var curator = firsProject.curator_name;
+			document.getElementById("curatorname").innerHTML = "Current Curator: " + curator;
+			document.getElementById("title13").innerHTML = firsProject.title.substring(0,25);
+			document.getElementById("thumb13").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + firstprojectid + "_480x360.png";
+			document.getElementById("title23").innerHTML = seconProject.title.substring(0,25);
+			document.getElementById("thumb33").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + thirdprojectid+ "_480x360.png";
+			document.getElementById("title33").innerHTML = thirProject.title.substring(0,25);
+			document.getElementById("title43").innerHTML = fourtProject.title.substring(0,25);
+			document.getElementById("title53").innerHTML = fiftProject.title.substring(0,25);
+			document.getElementById("thumb23").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + secondprojectid+ "_480x360.png";
+			document.getElementById("thumb43").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + fourtprojectid+ "_480x360.png";
+			document.getElementById("thumb53").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + fifthprojectid+ "_480x360.png";
+			var featured = obj.community_featured_projects;
+			var firsProject = featured[0];
+            var seconProject = featured[1];
+            var thirProject = featured[2];
+            var fourtProject = featured[3];
+			var firstprojectid = firsProject.id;
+			var secondprojectid = seconProject.id;
+			var thirdprojectid = thirProject.id;
+			var fourtprojectid = fourtProject.id;
+			document.getElementById("title14").innerHTML = firsProject.title.substring(0,25);
+			document.getElementById("thumb14").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + firstprojectid + "_480x360.png";
+			document.getElementById("title24").innerHTML = seconProject.title.substring(0,25);
+			document.getElementById("thumb34").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + thirdprojectid+ "_480x360.png";
+			document.getElementById("title34").innerHTML = thirProject.title.substring(0,25);
+			document.getElementById("title44").innerHTML = fourtProject.title.substring(0,25);
+			document.getElementById("thumb24").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + secondprojectid+ "_480x360.png";
+			document.getElementById("thumb44").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + fourtprojectid+ "_480x360.png";
 		}
     };
 }
