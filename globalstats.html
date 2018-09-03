@@ -133,7 +133,71 @@
 	  </table>
 	  <br>
 	  <br>
-	  <h2 class="font-weight-bold mb-0">Trending Projects (from Explore)</h2>
+	  <h2 class="font-weight-bold mb-0">Top Loved Projects</h2>
+	  <hr class="star-dark">
+	  <br>
+	  <br>
+	  <table>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title15"></h2>
+	  <img id="thumb15" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title25"></h2>
+	  <img id="thumb25" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title35"></h2>
+	  <img id="thumb35" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title45"></h2>
+	  <img id="thumb45" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  </table>
+	  <br>
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Top Remixed Projects</h2>
+	  <hr class="star-dark">
+	  <br>
+	  <br>
+	  <table>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title16"></h2>
+	  <img id="thumb16" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title26"></h2>
+	  <img id="thumb26" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title36"></h2>
+	  <img id="thumb36" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  <td>
+	  <center>
+	  <h2 class="font-weight-light mb-0" id="title46"></h2>
+	  <img id="thumb46" style="width: 280px; height: 210px; border-radius: 20px;"></img>
+	  </center>
+	  </td>
+	  </table>
+	  <br>
+	  <br>
+	  <h2 class="font-weight-bold mb-0">Popular Projects (from Explore)</h2>
 	  <hr class="star-dark">
 	  <br>
 	  <br>
@@ -165,7 +229,7 @@
 	  </table>
 	  <br>
 	  <br>
-	  <h2 class="font-weight-bold mb-0">Popular Projects (from Explore)</h2>
+	  <h2 class="font-weight-bold mb-0">Trending Projects (from Explore)</h2>
 	  <hr class="star-dark">
 	  <br>
 	  <br>
@@ -400,6 +464,40 @@ xhttp.send();}
 			document.getElementById("title44").innerHTML = fourtProject.title.substring(0,25);
 			document.getElementById("thumb24").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + secondprojectid+ "_480x360.png";
 			document.getElementById("thumb44").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + fourtprojectid+ "_480x360.png";
+			var toploved = obj.community_most_loved_projects;
+			var firsProject = toploved[0];
+            var seconProject = toploved[1];
+            var thirProject = toploved[2];
+            var fourtProject = toploved[3];
+			var firstprojectid = firsProject.id;
+			var secondprojectid = seconProject.id;
+			var thirdprojectid = thirProject.id;
+			var fourtprojectid = fourtProject.id;
+			document.getElementById("title15").innerHTML = firsProject.title.substring(0,25);
+			document.getElementById("thumb15").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + firstprojectid + "_480x360.png";
+			document.getElementById("title25").innerHTML = seconProject.title.substring(0,25);
+			document.getElementById("thumb35").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + thirdprojectid+ "_480x360.png";
+			document.getElementById("title35").innerHTML = thirProject.title.substring(0,25);
+			document.getElementById("title45").innerHTML = fourtProject.title.substring(0,25);
+			document.getElementById("thumb25").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + secondprojectid+ "_480x360.png";
+			document.getElementById("thumb45").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + fourtprojectid+ "_480x360.png";
+			var remix = obj.community_most_remixed_projects;
+			var firsProject = remix[0];
+            var seconProject = remix[1];
+            var thirProject = remix[2];
+            var fourtProject = remix[3];
+			var firstprojectid = firsProject.id;
+			var secondprojectid = seconProject.id;
+			var thirdprojectid = thirProject.id;
+			var fourtprojectid = fourtProject.id;
+			document.getElementById("title16").innerHTML = firsProject.title.substring(0,25);
+			document.getElementById("thumb16").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + firstprojectid + "_480x360.png";
+			document.getElementById("title26").innerHTML = seconProject.title.substring(0,25);
+			document.getElementById("thumb36").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + thirdprojectid+ "_480x360.png";
+			document.getElementById("title36").innerHTML = thirProject.title.substring(0,25);
+			document.getElementById("title46").innerHTML = fourtProject.title.substring(0,25);
+			document.getElementById("thumb26").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + secondprojectid+ "_480x360.png";
+			document.getElementById("thumb46").src = 'https://cdn2.scratch.mit.edu/get_image/project/' + fourtprojectid+ "_480x360.png";
 		}
     };
 }
