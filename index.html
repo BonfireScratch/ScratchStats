@@ -1,190 +1,128 @@
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       var response = xhttp.responseText;
-       userAPIdata = response;
-       loadpagefromAPI();
-       
-    }
-};
 
+<!DOCTYPE html>
 
-function myFunction(usertext) {
-document.getElementById('id01').style.display='none';
-usertext = usertext.replace("@","");
-usertext = usertext.replace("https://scratch.mit.edu/users/","");
-usertext = usertext.replace("/","");
-scratchusername=usertext;
-document.getElementById("displayusername").innerHTML = usertext;
-document.title = usertext + " | Stats+";
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + usertext, true);
-xhttp.send();
-loadpagefromAPI();
-}
-var getuserinputdata = -1;
-var scratchusername;
-var userAPIdata;
-var usermessages;
-var oldprojects;
-var offset;
-var i;
-var userprojects;
-var os;
-if (getuserinputdata == -1) {
+<html lang="en">
 
-}
-else {scratchusername=getuserinputdata}
-updatepageuser();
-function updatepageuser() {
-document.getElementById("displayusername").innerHTML = scratchusername;
-document.title = scratchusername + " | Stats+";
-}
+  <head>
 
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername, true);
-xhttp.send();
-function loadpagefromAPI() {
-	offset = 0;
-	userprojects = 0;
-	totalviews = 0;
-    var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
-    var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
-    var userlogo = getElementFromAPI(userAPIdata,"\"90x90\"");
-    var useraboutme = getElementFromAPI(userAPIdata,"\"bio\"");
-    var userdescription = getElementFromAPI(userAPIdata,"\"status\"");
-    var userjoindate = getElementFromAPI(userAPIdata,"\"joined\"").substring(0,10);
-    scratchusername = getElementFromAPI(userAPIdata,"\"username\"");
-    
-    var replacechar = '\\n';
-    useraboutme = useraboutme.split(replacechar).join(" ");
-    userdescription = userdescription.split(replacechar).join(" ");
-    if (useraboutme=="\",") {useraboutme = "";}
-    if (userdescription=="\",") {userdescription = "";}
-    var replacechar = '\\"';
-    useraboutme = useraboutme.split(replacechar).join('"');
-    userdescription = userdescription.split(replacechar).join('"');
-    
-    document.getElementById("userbasicinfo").innerHTML = "Country: " + usercountry + " - User ID: " + userid + " - Join date: " + userjoindate;
-    document.getElementById("userdisplaylogo").src = userlogo;
-    document.getElementById("aboutme").innerHTML = useraboutme;
-    document.getElementById("wiwo").innerHTML = userdescription;
-    updatepageuser();
-    getMessageCount();
-	getActivity();
-	getProjects();
-}
-function getElementFromAPI(API,element,isinterger) {
-    var str = "";
-    var i = API.indexOf(element)+element.length+2;if (isinterger == "true") {i=i-1}
-    
-    if (isinterger == "true") {
-        do {
-            str = str + API.charAt(i);
-            i = i+1;
-        } while (API.charAt(i) != "," && i < API.length && API.charAt(i) != "}")
-        
-    } else {
-    do {
-        str = str + API.charAt(i);
-        i = i+1;
-    } while ((API.charAt(i) != "\"" || (API.charAt(i) == "\"" && API.charAt(i-1) == "\\")) && i < API.length)}
-    
-    return str;
-}
-function getMessageCount() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-           var response = xhttp.responseText;
-           usermessages = getElementFromAPI(response,"\"count\"","true");
-           document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
-       
-    }
-};
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
-xhttp.send();
-}
-      
-function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);}
-function getActivity() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://scratch.mit.edu/messages/ajax/user-activity/?user=' + scratchusername + '&max=1000000', true);
-	xhttp.send();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var responsex = xhttp.responseText;
-			var countactivity = (responsex.match(/<li>/g) || []).length;
-			document.getElementById("activitycount").innerHTML = "Total Activity Actions: " + countactivity;
-		}
-	};
-}
-function getProjects() {
-	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/projects?offset=" + offset, true);
-	xhttp.send();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var responsex = xhttp.responseText;
-			var obj = JSON.parse(responsex);
-			if(obj.length > 0) {
-				lastProject = obj[obj.length-1].id;
-				lastProject2 = obj.length!==1?obj[obj.length-2].id:0;
-				lastProject3t = obj.length!==1?obj[obj.length-3].title:0;
-				lastProject2t = obj.length!==1?obj[obj.length-2].title:0;
-				lastProjectt = obj[obj.length-1].title;
-				lastProject3p = obj.length!==1?obj[obj.length-3].image:0;
-				lastProject2p = obj.length!==1?obj[obj.length-2].image:0;
-				lastProjectp = obj[obj.length-1].image;
-			}
-			var i = obj.length;
-			userprojects = userprojects + i;
-			if (obj.length === 20) {
-				offset = offset + 20;
-				setTimeout(function(){getProjects(); }, 150);
-			} else{
-				document.getElementById("projectscount").innerHTML = "Shared Projects: " + userprojects;
-				getBrowser(lastProject, lastProject2);
-				console.log(totalviews);
-				document.getElementById("title1").innerHTML = lastProjectt;
-				document.getElementById("title2").innerHTML = lastProject2t;
-				document.getElementById("title3").innerHTML = lastProject3t;
-				document.getElementById("thumb11").src = lastProjectp;
-				document.getElementById("thumb21").src = lastProject2p;
-				document.getElementById("thumb31").src = lastProject3p;
-				
-			}
-		}
-	}
-}
-function getBrowser(id,id2){
-    checkua = new XMLHttpRequest();
-    checkua.open("GET", 'https://cdn.projects.scratch.mit.edu/internalapi/project/' + id + '/get/', true);
-    checkua.send();
-    checkua.onreadystatechange = function() {
-                if (checkua.readyState === 4 && checkua.status === 200) {
-					useragent = JSON.parse(checkua.responseText).info.userAgent;
-						if(useragent===undefined){
-							if(id2!==0)getBrowser(id2,0);
-							document.getElementById("browser").innerHTML = "Unknown";
-							os = "Unknown";
-							return;
-						}
-						getinfo = new XMLHttpRequest();
-						getinfo.open("GET", 'https://helloacm.com/api/parse-user-agent/?s=' + encodeURI(useragent), true);
-						getinfo.send();
-						getinfo.onreadystatechange = function() {
-							if (getinfo.readyState === 4 && getinfo.status === 200) {
-								document.getElementById("browser").innerHTML = "Browser: " + JSON.parse(getinfo.responseText).browser;
-								getinfo = new XMLHttpRequest();
-								getinfo.open("GET", 'https://cors-anywhere.herokuapp.com/http://www.useragentstring.com/?uas=' + encodeURI(useragent) + "&getJSON=os_name", true);
-								getinfo.send();
-								getinfo.onreadystatechange = function() {
-									if (getinfo.readyState === 4 && getinfo.status === 200) {
-										os = JSON.parse(getinfo.responseText).os_name;
-										document.getElementById("OS").innerHTML = "OS: " + os;
-									}
-								};
-							}
-						}
-				};
-	};
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scratchstats+</title>
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="style.css">
+  </head>
+
+  <body id="page-top" onload="document.getElementById('id01').style.display='block'">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" >ScratchStats+</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+		    <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="globalstats.html">Global Stats</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="document.getElementById('id01').style.display='block'">Search Users</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead bg-primary text-white text-center">
+      <div class="container">
+        <img id="userdisplaylogo" style="border-radius: 20px;"></img>
+        <h1 class="text-uppercase mb-0" id="displayusername"></h1>
+		<h2 class="font-weight-light mb-0" id="dev"></h2>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0" id="userbasicinfo"></h2>
+		<h2 class="font-weight-light mb-0" id="usermessagecount"></h2>
+		<h2 class="font-weight-light mb-0" id="activitycount"></h2>
+		<h2 class="font-weight-light mb-0" id="browser">Browser: Unknown</h2>
+		<h2 class="font-weight-light mb-0" id="OS">OS: Unknown</h2>
+      </div>
+    </header>
+    <br>
+	<br>
+	<!-- Projects -->
+	<h1 class="text-center text-uppercase text-black">Projects</h1>
+	<hr class="star-dark">
+	<h2 class="font-weight-light mb-0 text-center" id="projectscount"></h2>
+	<center>
+	<table>
+	 <td>
+	 <center>
+	 <h2 class="font-weight-light mb-0" id="title1">Cake</h2>
+	 <img id="thumb11" style="width: 280px; height: 210px; border-radius: 20px;" src="pic.png"></img>
+	 </center>
+	 </td>
+	 <td>
+	 <center>
+	 <h2 class="font-weight-light mb-0" id="title2">Safe</h2>
+	 <img id="thumb21" style="width: 280px; height: 210px; border-radius: 20px;" src="pic2.png"></img>
+	 </center>
+	 </td>
+	 <td>
+	 <center>
+	 <h2 class="font-weight-light mb-0" id="title3">Hut</h2>
+	 <img id="thumb31" style="width: 280px; height: 210px; border-radius: 20px;" src="pic3.png"></img>
+	 </center>
+	 </td>
+	 </table>
+	 </center>
+	<br>
+	<br>
+    <!-- About Section -->
+    <section class="bg-primary text-white mb-0" id="about">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-white">About</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+            <p class="lead" id="aboutme"></p>
+          </div>
+          <div class="col-lg-4 mr-auto">
+            <p class="lead" id="wiwo"></p>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a class="btn btn-xl btn-outline-light" id="profileonscratch" onclick="openscratchuser()">
+            <i class="fa fa-download mr-2"></i>
+            View Profile
+          </a>
+        </div>
+      </div>
+    </section>
+	
+    <!-- Modal -->
+	<div id="id01" class="modal animate-opacity">
+	    <div class="modal-content card-4">
+		   <header class="cont teal">
+		   <span onclick="document.getElementById('id01').style.display='none'" class="button large display-topright">&times;</span>
+		   <h2 class="font-weight-light mb-0">Enter Scratcher Username or URL</h2>
+		   </header>
+		   <div class="cont light-grey">
+		   <input id="user" class="input animate-input" style="border:0!important; width:30%;" type="text" placeholder="griffpatch" required>
+			</div>
+			<footer class="cont teal">
+			<div class="center">
+			<a class="btn btn-xl btn-outline-light" id="profileonscratch" onclick="myFunction(user.value)">Get Stats</a>
+			</div>
+           </footer>
+          </div>
+		  </div>
+		 </div>
+    <script src="index.js"></script>
+    </html>
