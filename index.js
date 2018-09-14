@@ -1,10 +1,9 @@
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
        var response = xhttp.responseText;
        userAPIdata = response;
        loadpagefromAPI();
-       
     }
 };
 
@@ -71,6 +70,8 @@ function loadpagefromAPI() {
     getMessageCount();
 	getActivity();
 	getProjects();
+	getFollowers();
+	getFollowing();
 }
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
@@ -143,7 +144,6 @@ function getProjects() {
 			} else{
 				document.getElementById("projectscount").innerHTML = "Shared Projects: " + userprojects;
 				getBrowser(lastProject, lastProject2);
-				console.log(totalviews);
 				document.getElementById("title1").innerHTML = lastProjectt;
 				document.getElementById("title2").innerHTML = lastProject2t;
 				document.getElementById("title3").innerHTML = lastProject3t;
@@ -187,4 +187,76 @@ function getBrowser(id,id2){
 						}
 				};
 	};
+}
+function getFollowers() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/following", true);
+	xhttp.send();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var responsex = xhttp.responseText;
+			var obj = JSON.parse(responsex);
+			var following = obj[0];
+			var following1 = obj[1];
+			var following2 = obj[2];
+			var following3 = obj[3];
+			var following4 = obj[4];
+			var followingn = following.username;
+			var followingn1 = following1.username;
+            var followingn2 = following2.username;
+			var followingn3 = following3.username;
+			var followingn4 = following4.username;
+			var id1 = following.id;
+			var id2 = following1.id;
+			var id3 = following2.id;
+			var id4 = following3.id;
+			var id5 = following4.id;
+			document.getElementById("title").innerHTML = followingn.substring(0,15);
+			document.getElementById("titl1").innerHTML = followingn1.substring(0,15);
+			document.getElementById("titl2").innerHTML = followingn2.substring(0,15);
+			document.getElementById("titl3").innerHTML = followingn3.substring(0,15);
+			document.getElementById("titl4").innerHTML = followingn4.substring(0,15);
+			document.getElementById("thumb").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id1 +"_60x60.png";
+			document.getElementById("thumb1").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id2 +"_60x60.png";
+			document.getElementById("thumb2").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id3 +"_60x60.png";
+			document.getElementById("thumb3").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id4 +"_60x60.png";
+			document.getElementById("thumb4").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id5 +"_60x60.png";
+		}
+	}
+}
+function getFollowing() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/followers", true);
+	xhttp.send();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var responsex = xhttp.responseText;
+			var obj = JSON.parse(responsex);
+			var following = obj[0];
+			var following1 = obj[1];
+			var following2 = obj[2];
+			var following3 = obj[3];
+			var following4 = obj[4];
+			var followingn = following.username;
+			var followingn1 = following1.username;
+            var followingn2 = following2.username;
+			var followingn3 = following3.username;
+			var followingn4 = following4.username;
+			var id1 = following.id;
+			var id2 = following1.id;
+			var id3 = following2.id;
+			var id4 = following3.id;
+			var id5 = following4.id;
+			document.getElementById("t1").innerHTML = followingn.substring(0,15);
+			document.getElementById("titl11").innerHTML = followingn1.substring(0,15);
+			document.getElementById("titl12").innerHTML = followingn2.substring(0,15);
+			document.getElementById("titl13").innerHTML = followingn3.substring(0,15);
+			document.getElementById("titl14").innerHTML = followingn4.substring(0,15);
+			document.getElementById("thum2").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id1 +"_60x60.png";
+			document.getElementById("thum21").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id2 +"_60x60.png";
+			document.getElementById("thum22").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id3 +"_60x60.png";
+			document.getElementById("thum23").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id4 +"_60x60.png";
+			document.getElementById("thum24").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id5 +"_60x60.png";
+		}
+	}
 }
