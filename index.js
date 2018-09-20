@@ -72,6 +72,7 @@ function loadpagefromAPI() {
 	getProjects();
 	getFollowers();
 	getFollowing();
+	document.getElementById("reactions").contentWindow.location.replace("https://emojireact.com/embed?emojis=grinning,joy,open_mouth,slight_smile,thumbsup&url="+"scratchstats.cf/" + scratchusername);
 }
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
