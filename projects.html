@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scratchstats+</title>
+	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="style.css">
+  </head>
+  <body id="page-top" onload="document.getElementById('id01').style.display='block'">
+  
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" >ScratchStats+</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+		    <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="globalstats.html">Global Stats</a>
+            </li>
+			<li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="document.getElementById('id01').style.display='block'">Search Projects</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Search Users</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  <header class="masthead bg-primary text-white text-center">
+      <div class="container">
+        <h1 class="text-uppercase mb-0" id="title"></h1>
+		<h2 class="font-weight-light mb-0" id="by"></h2>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0" id="stats"></h2>
+		<br>
+		<div class="row">
+          <div class="col-lg-4 ml-auto">
+			<h2 class="font-weight-light mb-0">Instructions</h2>
+            <p class="lead" id="instructions"></p>
+          </div>
+          <div class="col-lg-4 mr-auto">
+		  <h2 class="font-weight-light mb-0">Notes and Credits</h2>
+            <p class="lead" id="credits"></p>
+          </div>
+        </div>
+      </div>
+	  <div class="text-center mt-4">
+          <a class="btn btn-xl btn-outline-light" id="profileonscratch" onclick="openscratchuser()">
+            <i class="fa fa-download mr-2"></i>
+            View Project
+          </a>
+        </div>
+    </header>
+  
+  <div id="id01" class="modal animate-opacity">
+	    <div class="modal-content card-4">
+		   <header class="cont teal">
+		   <span onclick="document.getElementById('id01').style.display='none'" class="button large display-topright">&times;</span>
+		   <h2 class="font-weight-light mb-0">Enter Project ID and Creator</h2>
+		   </header>
+		   <div class="cont light-grey">
+		   <input id="proj" class="input animate-input" style="border:0!important; width:30%;" type="text" value="10128407" placeholder="10128407" required>
+			</div>
+		   <div class="cont light-grey">
+		   <input id="user" class="input animate-input" style="border:0!important; width:35%;" type="text" value="griffpatch" placeholder="griffpatch" required>
+			</div>
+			<footer class="cont teal">
+			<div class="center">
+			<a class="btn btn-xl btn-outline-light" id="profileonscratch" onclick="myFunction(user.value, proj.value)">Get Stats</a>
+			</div>
+           </footer>
+          </div>
+		  </div>
+		 </div>
+  
+  <script src="project.js"></script>
+  </body>
+</html>
