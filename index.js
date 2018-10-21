@@ -29,6 +29,7 @@ var offset;
 var i;
 var userprojects;
 var os;
+var userfollowers;
 if (getuserinputdata == -1) {
 
 }
@@ -45,6 +46,7 @@ function loadpagefromAPI() {
 	offset = 0;
 	userprojects = 0;
 	totalviews = 0;
+	userfollowers = 0;
     var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
     var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
     var userlogo = getElementFromAPI(userAPIdata,"\"90x90\"");
@@ -72,6 +74,7 @@ function loadpagefromAPI() {
 	getProjects();
 	getFollowers();
 	getFollowing();
+	getFollowersCount();
 	document.getElementById("reactions").contentWindow.location.replace("https://emojireact.com/embed?emojis=grinning,joy,open_mouth,slight_smile,thumbsup&url="+"scratchstats.cf/" + scratchusername);
 }
 function getElementFromAPI(API,element,isinterger) {
@@ -107,6 +110,9 @@ xhttp.send();
 }
       
 function openscratchuser() { window.open("https://scratch.mit.edu/users/" + scratchusername);}
+function openscratchuserfollowing() { window.open("https://scratch.mit.edu/users/" + scratchusername + "/following");}
+function openscratchuserfollowers() { window.open("https://scratch.mit.edu/users/" + scratchusername + "/followers");}
+function openscratchprojects() { window.open("https://scratch.mit.edu/users/" + scratchusername + "/projects");}
 function getActivity() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('GET', 'https://scratch.mit.edu/messages/ajax/user-activity/?user=' + scratchusername + '&max=1000000', true);
@@ -258,6 +264,26 @@ function getFollowing() {
 			document.getElementById("thum22").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id3 +"_60x60.png";
 			document.getElementById("thum23").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id4 +"_60x60.png";
 			document.getElementById("thum24").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id5 +"_60x60.png";
+		}
+	}
+}
+function getFollowersCount(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/followers", true);
+	xhttp.send();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var responsex = xhttp.responseText;
+			var obj = JSON.parse(responsex);
+			console.log(obj);
+			//var i = obj.length;
+			//userfollowers = userfollowers + i;
+			//if (obj.length === 20) {
+			//	offset = offset + 20;
+			//	setTimeout(function(){getFollowersCount(); }, 150);
+			//} else{
+				//console.log(userfollowers);
+			//}
 		}
 	}
 }
