@@ -9,6 +9,8 @@ function init(){
 	getCurator();
 }
 
+function openscratchtrending() { window.open("https://scratch.mit.edu/explore/projects/all/popular");}
+function openscratchpopular() { window.open("https://scratch.mit.edu/explore/projects/all/trending");}
 function loadcommunity(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
