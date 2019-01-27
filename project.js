@@ -14,7 +14,7 @@ usertext = usertext.replace("https://scratch.mit.edu/users/","");
 usertext = usertext.replace("/","");
 scratchusername=usertext;
 project = proj;
-xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/projects/" + project, true);
+xhttp.open("GET", "https://cors.io?https://api.scratch.mit.edu/users/" + scratchusername + "/projects/" + project, true);
 xhttp.send();
 loadpagefromAPI();
 }
@@ -51,7 +51,7 @@ function getElementFromAPI(API,element,isinterger) {
 }
 function getStats() {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + '/projects/' + project, true);
+	xhttp.open('GET', 'https://cors.io?https://api.scratch.mit.edu/users/' + scratchusername + '/projects/' + project, true);
 	xhttp.send();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
