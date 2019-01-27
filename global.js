@@ -52,7 +52,7 @@ xhttp.send();}
   
   function popularProjects () {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=popular&q=*', true);
+    xmlhttp.open('GET', 'https://cors.io?https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=popular&q=*', true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -76,7 +76,7 @@ xhttp.send();}
 
   function trendingProjects () {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=trending&q=*', true);
+    xmlhttp.open('GET', 'https://cors.io?https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=trending&q=*', true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -100,7 +100,7 @@ xhttp.send();}
 
   function recentProjects () {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=recent&q=*', true);
+    xmlhttp.open('GET', 'https://cors.io?https://api.scratch.mit.edu/explore/projects?offset=0&language=en&mode=recent&q=*', true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -123,7 +123,7 @@ xhttp.send();}
 }
   function getCurator () {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://api.scratch.mit.edu/proxy/featured', true);
+    xmlhttp.open('GET', 'https://cors.io?https://api.scratch.mit.edu/proxy/featured', true);
     xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
