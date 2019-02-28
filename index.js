@@ -1,7 +1,3 @@
-window.onload = function() {
-    myFunction("griffpatch");
-}
-
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -35,6 +31,7 @@ var i;
 var userprojects;
 var os;
 var userfollowers;
+myFunction("griffpatch");
 if (getuserinputdata == -1) {
 	
 }
