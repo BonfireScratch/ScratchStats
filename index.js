@@ -75,7 +75,6 @@ function loadpagefromAPI() {
 	getProjects();
 	getFollowers();
 	getFollowing();
-	getFollowersCount();
 }
 function getElementFromAPI(API,element,isinterger) {
     var str = "";
@@ -266,7 +265,4 @@ function getFollowing() {
 			document.getElementById("thum24").src = "https://cdn2.scratch.mit.edu/get_image/user/" + id5 +"_60x60.png";
 		}
 	}
-}
-function getFollowersCount(){
-	console.log("sd")
 }
