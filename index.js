@@ -41,7 +41,7 @@ function loadpagefromAPI() {
 	userprojects = 0;
 	totalviews = 0;
 	userfollowers = 0;
-    var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Not Given"}
+    var usercountry = getElementFromAPI(userAPIdata,"\"country\"");if (usercountry=="0") {usercountry="Location Not Given"}
     var userid = getElementFromAPI(userAPIdata,"\"id\"","true");
     var userlogo = getElementFromAPI(userAPIdata,"\"90x90\"");
     var useraboutme = getElementFromAPI(userAPIdata,"\"bio\"");
@@ -93,7 +93,7 @@ function getMessageCount() {
         if (this.readyState == 4 && this.status == 200) {
            var response = xhttp.responseText;
            usermessages = getElementFromAPI(response,"\"count\"","true");
-           document.getElementById("usermessagecount").innerHTML = "Current Message Count: " + usermessages;
+           document.getElementById("usermessagecount").innerHTML = "Unread Messages: " + usermessages;
        
     }
 };
