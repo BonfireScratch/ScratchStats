@@ -32,7 +32,7 @@ var userprojects;
 var os;
 var userfollowers;
 if (getuserinputdata == -1) {
-	scratchusername = "griffpatch";
+	
 }
 else {scratchusername=getuserinputdata}
 updatepageuser();
