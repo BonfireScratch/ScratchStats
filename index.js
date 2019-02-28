@@ -1,3 +1,14 @@
+var getuserinputdata = -1;
+var scratchusername;
+var userAPIdata;
+var usermessages;
+var oldprojects;
+var offset;
+var i;
+var userprojects;
+var os;
+var userfollowers;
+
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -6,7 +17,6 @@ xhttp.onreadystatechange = function() {
        loadpagefromAPI();
     }
 };
-
 
 function myFunction(usertext) {
 document.getElementById('id01').style.display='none';
@@ -21,17 +31,6 @@ xhttp.send();
 loadpagefromAPI();
 }
 
-var getuserinputdata = -1;
-var scratchusername;
-var userAPIdata;
-var usermessages;
-var oldprojects;
-var offset;
-var i;
-var userprojects;
-var os;
-var userfollowers;
-myFunction("griffpatch");
 if (getuserinputdata == -1) {
 	
 }
