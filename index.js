@@ -1,5 +1,3 @@
-var getuserinputdata = -1;
-var scratchusername;
 var userAPIdata;
 var usermessages;
 var oldprojects;
@@ -30,11 +28,6 @@ xhttp.open("GET", "https://cors.io/?https://api.scratch.mit.edu/users/" + userte
 xhttp.send();
 loadpagefromAPI();
 }
-
-if (getuserinputdata == -1) {
-	
-}
-else {scratchusername=getuserinputdata}
 updatepageuser();
 function updatepageuser() {
 document.getElementById("displayusername").innerHTML = scratchusername;
