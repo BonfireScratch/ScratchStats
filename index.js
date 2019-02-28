@@ -164,7 +164,6 @@ function getBrowser(id,id2){
 						if(useragent===undefined){
 							if(id2!==0)getBrowser(id2,0);
 							document.getElementById("browser").innerHTML = "Browser: Unknown";
-							os = "Unknown";
 							return;
 						}
 						getinfo = new XMLHttpRequest();
@@ -180,6 +179,8 @@ function getBrowser(id,id2){
 									if (getinfo.readyState === 4 && getinfo.status === 200) {
 										os = JSON.parse(getinfo.responseText).os_name;
 										document.getElementById("OS").innerHTML = "OS: " + os;
+									} else {
+										document.getElementById("OS").innerHTML = "OS: Unknown";
 									}
 								};
 							}
