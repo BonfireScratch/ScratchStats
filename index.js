@@ -171,7 +171,7 @@ function getBrowser(id,id2){
 					useragent = JSON.parse(checkua.responseText).info.userAgent;
 						if(useragent===undefined){
 							if(id2!==0)getBrowser(id2,0);
-							document.getElementById("browser").innerHTML = "Unknown";
+							document.getElementById("browser").innerHTML = "OS: Unknown";
 							os = "Unknown";
 							return;
 						}
