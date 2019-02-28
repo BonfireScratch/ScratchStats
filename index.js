@@ -9,17 +9,18 @@ xhttp.onreadystatechange = function() {
 
 
 function myFunction(usertext) {
-document.getElementById('id01').style.display='none';
-usertext = usertext.replace("@","");
-usertext = usertext.replace("https://scratch.mit.edu/users/","");
-usertext = usertext.replace("/","");
-scratchusername=usertext;
-document.getElementById("displayusername").innerHTML = usertext;
-document.title = usertext + " | Stats+";
-xhttp.open("GET", "https://cors.io/?https://api.scratch.mit.edu/users/" + usertext, true);
-xhttp.send();
-loadpagefromAPI();
+	document.getElementById('id01').style.display='none';
+	usertext = usertext.replace("@","");
+	usertext = usertext.replace("https://scratch.mit.edu/users/","");
+	usertext = usertext.replace("/","");
+	scratchusername=usertext;
+	document.getElementById("displayusername").innerHTML = usertext;
+	document.title = usertext + " | Stats+";
+	xhttp.open("GET", "https://cors.io/?https://api.scratch.mit.edu/users/" + usertext, true);
+	xhttp.send();
+	loadpagefromAPI();
 }
+
 var getuserinputdata = -1;
 var scratchusername;
 var userAPIdata;
@@ -31,7 +32,7 @@ var userprojects;
 var os;
 var userfollowers;
 if (getuserinputdata == -1) {
-
+	scratchusername = "griffpatch";
 }
 else {scratchusername=getuserinputdata}
 updatepageuser();
