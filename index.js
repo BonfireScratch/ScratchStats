@@ -24,7 +24,7 @@ usertext = usertext.replace("/","");
 scratchusername=usertext;
 document.getElementById("displayusername").innerHTML = usertext;
 document.title = usertext + " | Stats+";
-xhttp.open("GET", "https://cors.io/?https://api.scratch.mit.edu/users/" + usertext, true);
+xhttp.open("GET", "https://api.scratch.mit.edu/users/" + usertext, true);
 xhttp.send();
 loadpagefromAPI();
 }
@@ -97,7 +97,7 @@ function getMessageCount() {
        
     }
 };
-xhttp.open("GET", "https://cors.io/?https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
+xhttp.open("GET", "https://api.scratch.mit.edu/users/" + scratchusername + "/messages/count", true);
 xhttp.send();
 }
       
@@ -107,7 +107,7 @@ function openscratchuserfollowers() { window.open("https://scratch.mit.edu/users
 function openscratchprojects() { window.open("https://scratch.mit.edu/users/" + scratchusername + "/projects");}
 function getActivity() {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://cors.io/?https://scratch.mit.edu/messages/ajax/user-activity/?user=' + scratchusername + '&max=1000000', true);
+	xhttp.open('GET', 'https://scratch.mit.edu/messages/ajax/user-activity/?user=' + scratchusername + '&max=1000000', true);
 	xhttp.send();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -119,7 +119,7 @@ function getActivity() {
 }
 function getProjects() {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://cors.io/?https://api.scratch.mit.edu/users/' + scratchusername + "/projects?offset=" + offset, true);
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/projects?offset=" + offset, true);
 	xhttp.send();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -190,7 +190,7 @@ function getBrowser(id,id2){
 }
 function getFollowers() {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://cors.io/?https://api.scratch.mit.edu/users/' + scratchusername + "/following", true);
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/following", true);
 	xhttp.send();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -226,7 +226,7 @@ function getFollowers() {
 }
 function getFollowing() {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open('GET', 'https://cors.io/?https://api.scratch.mit.edu/users/' + scratchusername + "/followers", true);
+	xhttp.open('GET', 'https://api.scratch.mit.edu/users/' + scratchusername + "/followers", true);
 	xhttp.send();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
