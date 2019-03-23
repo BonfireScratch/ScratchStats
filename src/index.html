@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ScratchStats+</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A website that shows statistics about Scratch with a nice UI">
+<meta name="keywords" content="scratch, scratchstats, statistics, scratch-api">
+<meta name="author" content="-Bonfire-">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+body {
+	font-family:Lato;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:700; font-family:Montserrat;
+}
+</style>
+</head>
+<body onload="loadUser('griffpatch')" class="bg-secondary">
+<div class="container">
+<br>
+<div id="top" class="bg-light card">
+<div class="row">
+<div class="col-sm-12">
+<img id="logo" style="border-radius: 20px;" class="mx-auto d-block"></img>
+<h1 id="username" class="text-center display-2"></h1>
+<br>
+</div>
+<div class="col-sm-12">
+<div class="row">
+<div class="col-sm-4">
+<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal">Change User</button>
+</div>
+<div class="col-sm-4">
+<button type="button" class="btn btn-primary btn-block" >Copy Link to Stats</button>
+</div>
+<div class="col-sm-4">
+<button type="button" class="btn btn-primary btn-block" onclick="openProfile();">Go to Scratch Profile</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<div id="account" class="bg-light card">
+<div class="row">
+<div class="col-sm-4">
+<h4 id="country" class="text-center"></h4>
+</div>
+<div class="col-sm-4">
+<h4 id="id" class="text-center"></h4>
+</div>
+<div class="col-sm-4">
+<h4 id="st" class="text-center"></h4>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<h4 id="msg" class="text-center"></h4>
+</div>
+<div class="col-sm-6">
+<h4 id="date" class="text-center"></h4>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<h4 id="os" class="text-center"></h4>
+</div>
+<div class="col-sm-6">
+<h4 id="browser" class="text-center"></h4>
+</div>
+</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modal">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-header bg-primary text-white">
+<h4 class="modal-title">Enter a Username</h4>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<input type="text" id="user" class="form-control form-control-lg" placeholder="griffpatch">
+</div>
+<div class="modal-footer bg-primary text-white justify-content-center">
+<button type="button" class="btn btn-light" onclick="loadUser(user.value);" data-dismiss="modal">OK</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+<div class="row">
+<div class="col-sm-2">
+<span class="fas fa-exclamation-circle display-3 text-warning"></span>
+</div>
+<div class="col-sm-8">
+<h4>Could not find a Scratcher with given username</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
