@@ -1,10 +1,14 @@
 var username;
+var browser = "?";
+var os = "?";
 var projects = [];
 
 function loadUser(user) {
 	var usern = user;
 	if (user[0] === "@") {
 		usern = usern.substring(1, 100);
+	} else if (user == "" || user == " ") {
+		return;
 	}
 	
 	var xhttp = new XMLHttpRequest();
@@ -63,9 +67,6 @@ function proj(offset) {
 			if (res.length === lim) {
 				proj(offset + lim);
 			}
-			if (res.length !== 0) {
-				var lastProject = res[res.length-1].id;
-			}
 			if (res.length === 0 && offset !== 0) {
 				loadedProjects();
 			}
@@ -82,7 +83,28 @@ function proj(offset) {
 }
 
 function loadedProjects() {
-	console.log(projects);
+	var lastProject = projects[projects.length - 1].id;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var res = JSON.parse(xhttp.responseText);
+			var userAgent = res.meta ? res.meta.agent : (res.info ? res.info.userAgent : "");
+			if (userAgent) {
+				browser = new UAParser(userAgent).getBrowser();
+				os = new UAParser(userAgent).getOS();
+				if (!browser.name) {
+					browser = "?";
+				} else if (!os.name) {
+					os = "?";
+				}
+				document.getElementById("os").innerHTML = `OS: ${os.name} ${os.version}`;
+				document.getElementById("browser").innerHTML = `Browser: ${browser.name}`;
+			}
+			
+		}
+	};
+	xhttp.open("GET", `https://projects.scratch.mit.edu/${lastProject}`, true);
+	xhttp.send();
 }
 
 function getMsg() {
