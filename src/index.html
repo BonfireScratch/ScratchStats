@@ -14,9 +14,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"></script>
 <style>
 body {
 	font-family:Lato;
+	color: #0b0b0b;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,10 +26,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 </style>
 </head>
-<body onload="loadUser('griffpatch')" class="bg-secondary">
-<div class="container">
+<body onload="loadUser('griffpatch')">
+<div class="bg-light">
 <br>
-<div id="top" class="bg-light card">
+<div class="container">
 <div class="row">
 <div class="col-sm-12">
 <img id="logo" style="border-radius: 20px;" class="mx-auto d-block"></img>
@@ -49,8 +51,10 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 </div>
 </div>
+</div>
+<div id="account">
+<h2 class="text-center display-4">Account Info</h2>
 <br>
-<div id="account" class="bg-light card">
 <div class="row">
 <div class="col-sm-4">
 <h4 id="country" class="text-center"></h4>
@@ -62,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 <h4 id="st" class="text-center"></h4>
 </div>
 </div>
+<br>
 <div class="row">
 <div class="col-sm-6">
 <h4 id="msg" class="text-center"></h4>
@@ -107,7 +112,6 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 <div class="col-sm-8">
 <h4>Could not find a Scratcher with given username</h4>
-</div>
 </div>
 </div>
 </div>
