@@ -179,13 +179,4 @@ function openProfile() {
 	window.open(`https://scratch.mit.edu/users/${username}`);
 }
 
-if (window.location.hostname == window.location.href) {
-	window.location.href = window.location.hostname + "#griffpatch";
-	loadUser('griffpatch');
-} else {
-	if (window.location.hostname == "file:///C:/Users/kouritis/Desktop/src/index.html")
-		loadUser(window.location.href.substr(49));
-	else {
-		loadUser(window.location.href.substr(44));
-	}
-}
+loadUser('griffpatch');
