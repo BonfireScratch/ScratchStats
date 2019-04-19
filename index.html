@@ -26,14 +26,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 </style>
 </head>
-<body onload="loadUser('griffpatch')">
+<body>
 <div class="bg-light">
 <br>
 <div class="container">
 <div class="row">
 <div class="col-sm-12">
 <img id="logo" style="border-radius: 20px;" class="mx-auto d-block"></img>
-<h1 id="username" class="text-center display-2"></h1>
+<h1 id="username" class="text-center display-1"></h1>
 <br>
 </div>
 <div class="col-sm-12">
@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal">Change User</button>
 </div>
 <div class="col-sm-4">
-<button type="button" class="btn btn-primary btn-block" >Copy Link to Stats</button>
+<button type="button" class="btn btn-primary btn-block">Copy Link to Stats</button>
 </div>
 <div class="col-sm-4">
 <button type="button" class="btn btn-primary btn-block" onclick="openProfile();">Go to Scratch Profile</button>
@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 <br>
 </div>
 <div id="account">
-<h2 class="text-center display-4">Account Info</h2>
+<h2 class="text-center display-3">Account Info</h2>
 <br>
 <div class="row">
 <div class="col-sm-4">
@@ -89,25 +89,87 @@ h1, h2, h3, h4, h5, h6 {
 </div>
 
 <div id="projects" class="container"> 
-<h2 class="text-center display-4">Projects</h2>
+<h2 class="text-center display-3">Projects</h2>
 <br>
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-12">
 <center>
-<h4 id="fProjectName"></h4>
-<img id="fProjectImg" style="border-radius: 20px;" class="mx-auto d-block"></img>
+<h3 class="text-center display-4">Newest Projects</h3>
+<br>
 </center>
 </div>
 <div class="col-sm-4">
 <center>
-<h4 id="sProjectName"></h4>
-<img id="sProjectImg" style="border-radius: 20px;" class="mx-auto d-block"></img>
+<h4 id="fProjectName"></h4>
+<a id="fProjHref" target="_blank"><img id="fProjectImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="sProjectName"><a></a></h4>
+<a id="sProjHref" target="_blank"><img id="sProjectImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
 </center>
 </div>
 <div class="col-sm-4">
 <center>
 <h4 id="tProjectName"></h4>
-<img id="tProjectImg" style="border-radius: 20px;" class="mx-auto d-block"></img>
+<a id="tProjHref" target="_blank"><img id="tProjectImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+</div>
+
+<br>
+<div class="row">
+<div class="col-sm-12">
+<center>
+<h3 class="text-center display-4">Most Viewed Projects</h3>
+<br>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="fViewName"></h4>
+<a id="fViewHref" target="_blank"><img id="fViewImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="sViewName"><a></a></h4>
+<a id="sViewHref" target="_blank"><img id="sViewImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="tViewName"></h4>
+<a id="tViewHref" target="_blank"><img id="tViewImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+</div>
+
+<br>
+<div class="row">
+<div class="col-sm-12">
+<center>
+<h3 class="text-center display-4">Most Loved Projects</h3>
+<br>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="fLoveName"></h4>
+<a id="fLoveHref" target="_blank"><img id="fLoveImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="sLoveName"><a></a></h4>
+<a id="sLoveHref" target="_blank"><img id="sLoveImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
+</center>
+</div>
+<div class="col-sm-4">
+<center>
+<h4 id="tLoveName"></h4>
+<a id="tLoveHref" target="_blank"><img id="tLoveImg" style="border-radius: 20px;" class="mx-auto d-block"></img></a>
 </center>
 </div>
 </div>
