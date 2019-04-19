@@ -36,7 +36,7 @@ function notFoundError() {
 function getStats(res, pushHistory) {
 	username = res.username;
 	if(pushHistory) {
-		history.pushState({}, "", `${window.location.host}#${username}`);
+		history.pushState({}, "", `#${username}`);
 	}
 	projects = [];
 	var id = res.id;
