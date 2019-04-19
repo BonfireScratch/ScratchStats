@@ -3,7 +3,7 @@ var browser = "?";
 var os = "?";
 var projects = [];
 
-function loadUser(user) {
+function loadUser(user, pushHistory) {
 	var usern = user;
 	if (user[0] === "@") {
 		usern = usern.substring(1, 100);
@@ -18,7 +18,7 @@ function loadUser(user) {
 			if (res.code) {
 				notFoundError();
 			} else {
-				getStats(res);
+				getStats(res, pushHistory);
 			}
 		}
 	};
@@ -33,8 +33,11 @@ function notFoundError() {
 	}, 4000);
 }
 
-function getStats(res) {
+function getStats(res, pushHistory) {
 	username = res.username;
+	if(pushHistory) {
+		history.pushState({}, "", `${window.location.host}#${username}`);
+	}
 	projects = [];
 	var id = res.id;
 	var st = res.scratchteam;
@@ -179,4 +182,7 @@ function openProfile() {
 	window.open(`https://scratch.mit.edu/users/${username}`);
 }
 
-loadUser('griffpatch');
+if (location.hash) {
+	window.location = `/${location.hash.substring(1, 100)}`;
+}
+loadUser('griffpatch', false);
