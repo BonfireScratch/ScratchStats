@@ -35,6 +35,7 @@ function notFoundError() {
 
 function getStats(res) {
 	username = res.username;
+	projects = [];
 	var id = res.id;
 	var st = res.scratchteam;
 	var joined = new Date(res.history.joined);
@@ -75,7 +76,7 @@ function proj(offset) {
 			});
 			if (res.length !== lim) {
 				loadedProjects();
-				getMostRecentProjects();
+				getProjectStats();
 			}
 		}
 	};
@@ -107,17 +108,58 @@ function loadedProjects() {
 	xhttp.send();
 }
 
-function getMostRecentProjects() {
+function sortProjects(stat) {
+	var projArray = projects.slice();
+	projArray.sort((a, b) => {
+		return b.stats[stat] - a.stats[stat];
+	});
+	return projArray;
+}
+
+function getProjectStats() {
 	var lastProject = projects[projects.length - 1];
 	var lastProject2 = projects[projects.length - 2];
 	var lastProject3 = projects[projects.length - 3];
-	console.log(lastProject, lastProject2, lastProject3);
-	document.getElementById("fProjectName").innerHTML = lastProject.title;
-	document.getElementById("sProjectName").innerHTML = lastProject2.title;
-	document.getElementById("tProjectName").innerHTML = lastProject3.title;
+	
+	var views = sortProjects("views");
+	var popProject = views[0];
+	var popProject2 = views[1];
+	var popProject3 = views[2];
+	
+	var loves = sortProjects("loves");
+	var lovProject = loves[0];
+	var lovProject2 = loves[1];
+	var lovProject3 = loves[2];
+	
+	document.getElementById("fProjectName").innerHTML = lastProject.title.substring(0, 25);
+	document.getElementById("sProjectName").innerHTML = lastProject2.title.substring(0, 25);
+	document.getElementById("tProjectName").innerHTML = lastProject3.title.substring(0, 25);
+	document.getElementById("fProjHref").href = `https://scratch.mit.edu/projects/${lastProject.id}/`;
+	document.getElementById("sProjHref").href = `https://scratch.mit.edu/projects/${lastProject2.id}/`;
+	document.getElementById("tProjHref").href = `https://scratch.mit.edu/projects/${lastProject3.id}/`;
 	document.getElementById("fProjectImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lastProject.id}_216x163.png`;
 	document.getElementById("sProjectImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lastProject2.id}_216x163.png`;
 	document.getElementById("tProjectImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lastProject3.id}_216x163.png`;
+	
+	document.getElementById("fViewName").innerHTML = popProject.title.substring(0, 25);
+	document.getElementById("sViewName").innerHTML = popProject2.title.substring(0, 25);
+	document.getElementById("tViewName").innerHTML = popProject3.title.substring(0, 25);
+	document.getElementById("fViewHref").href = `https://scratch.mit.edu/projects/${popProject.id}/`;
+	document.getElementById("sViewHref").href = `https://scratch.mit.edu/projects/${popProject2.id}/`;
+	document.getElementById("tViewHref").href = `https://scratch.mit.edu/projects/${popProject3.id}/`;
+	document.getElementById("fViewImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${popProject.id}_216x163.png`;
+	document.getElementById("sViewImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${popProject2.id}_216x163.png`;
+	document.getElementById("tViewImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${popProject3.id}_216x163.png`;
+	
+	document.getElementById("fLoveName").innerHTML = lovProject.title.substring(0, 25);
+	document.getElementById("sLoveName").innerHTML = lovProject2.title.substring(0, 25);
+	document.getElementById("tLoveName").innerHTML = lovProject3.title.substring(0, 25);
+	document.getElementById("fLoveHref").href = `https://scratch.mit.edu/projects/${lovProject.id}/`;
+	document.getElementById("sLoveHref").href = `https://scratch.mit.edu/projects/${lovProject2.id}/`;
+	document.getElementById("tLoveHref").href = `https://scratch.mit.edu/projects/${lovProject3.id}/`;
+	document.getElementById("fLoveImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lovProject.id}_216x163.png`;
+	document.getElementById("sLoveImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lovProject2.id}_216x163.png`;
+	document.getElementById("tLoveImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lovProject3.id}_216x163.png`;
 }
 
 function getMsg() {
@@ -135,4 +177,15 @@ function getMsg() {
 
 function openProfile() {
 	window.open(`https://scratch.mit.edu/users/${username}`);
+}
+
+if (window.location.hostname == window.location.href) {
+	window.location.href = window.location.hostname + "#griffpatch";
+	loadUser('griffpatch');
+} else {
+	if (window.location.hostname == "file:///C:/Users/kouritis/Desktop/src/index.html")
+		loadUser(window.location.href.substr(49));
+	else {
+		loadUser(window.location.href.substr(44));
+	}
 }
