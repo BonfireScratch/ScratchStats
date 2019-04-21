@@ -13,5 +13,8 @@ It collects the data from the Scratch API and the ScratchStats.com API.
 
 All code is front-end, with no dependency on servers.
 
+## Contributing
+You are free to contibute on the project, as long as you have read our Code of Conduct
+
 - BonfireScratch
    - Owner of this Organisation
