@@ -1,7 +1,8 @@
-var username;
+var username = "";
 var browser = "?";
 var os = "?";
 var projects = [];
+var total = [];
 
 function loadUser(user, pushHistory) {
 	var usern = user;
@@ -39,6 +40,7 @@ function getStats(res, pushHistory) {
 		history.pushState({}, "", `#${username}`);
 	}
 	projects = [];
+	total = [];
 	var id = res.id;
 	var st = res.scratchteam;
 	var joined = new Date(res.history.joined);
@@ -119,6 +121,19 @@ function sortProjects(stat) {
 	return projArray;
 }
 
+function getTotal() {
+	var statsArray = ["views", "loves", "favorites", "comments"];
+	var statsResults = [];
+	statsArray.forEach((stat) => {
+		var st = 0;
+		projects.forEach((project) => {
+			st += project.stats[stat];
+		}); 
+		statsResults[stat] = st;
+	});
+	return statsResults;
+}
+
 function getProjectStats() {
 	var lastProject = projects[projects.length - 1];
 	var lastProject2 = projects[projects.length - 2];
@@ -133,6 +148,8 @@ function getProjectStats() {
 	var lovProject = loves[0];
 	var lovProject2 = loves[1];
 	var lovProject3 = loves[2];
+	
+	var totStats = getTotal();
 	
 	document.getElementById("fProjectName").innerHTML = lastProject.title.substring(0, 25);
 	document.getElementById("sProjectName").innerHTML = lastProject2.title.substring(0, 25);
@@ -163,6 +180,11 @@ function getProjectStats() {
 	document.getElementById("fLoveImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lovProject.id}_216x163.png`;
 	document.getElementById("sLoveImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lovProject2.id}_216x163.png`;
 	document.getElementById("tLoveImg").src = `https://cdn2.scratch.mit.edu/get_image/project/${lovProject3.id}_216x163.png`;
+	
+	document.getElementById("totViews").innerHTML = `Total Views: ${totStats["views"]}`;
+	document.getElementById("totLoves").innerHTML = `Total Loves: ${totStats["loves"]}`;
+	document.getElementById("totFavourites").innerHTML = `Total Favourites: ${totStats["favorites"]}`;
+	document.getElementById("totComments").innerHTML = `Total Comments: ${totStats["comments"]}`;
 }
 
 function getMsg() {
@@ -183,6 +205,11 @@ function openProfile() {
 }
 
 if (location.hash) {
-	window.location = `/${location.hash.substring(1, 100)}`;
+	window.location = `#${location.hash.substring(1, 100)}`;
 }
+
+window.onhashchange = () => {
+	loadUser(location.hash.substring(1), true);
+}
+
 loadUser('griffpatch', false);
