@@ -11,7 +11,7 @@ It uses Bootstrap for the plain CSS styling and responsiveness, and vanilla Java
 
 It collects the data from the Scratch API and the ScratchStats.com API.
 
-All code is front-end, with no dependency on servers.
+All code is front-end, with no dependency external on servers.
 
 ## Contributing
 You are free to contibute on the project, as long as you have read our Code of Conduct
