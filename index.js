@@ -205,11 +205,11 @@ function openProfile() {
 }
 
 if (location.hash) {
-	window.location = `#${location.hash.substring(1, 100)}`;
+	loadUser(location.hash.substring(1), true);
+} else {
+	loadUser('griffpatch', false);
 }
 
 window.onhashchange = () => {
 	loadUser(location.hash.substring(1), true);
 }
-
-loadUser('griffpatch', false);
